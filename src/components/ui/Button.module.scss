@@ -1,0 +1,36 @@
+@use "../../assets/styles/variables.scss" as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  padding: 11px 16px;
+  border-radius: 999px;
+
+  cursor: pointer;
+  user-select: none;
+
+  font-weight: 900;
+  line-height: 1;
+
+  border: 1px solid transparent;
+  text-decoration: none;
+}
+
+.primary {
+  background: $accent;
+  border-color: $accent;
+  color: #fff;
+
+  &:hover { filter: brightness(0.97); }
+}
+
+.ghost {
+  background: #fff;
+  border-color: $border;
+  color: $text;
+
+  &:hover { background: $panel2; }
+}

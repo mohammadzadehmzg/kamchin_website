@@ -1,0 +1,47 @@
+@use "../../assets/styles/variables.scss" as *;
+
+.overlay { position: fixed; inset: 0; z-index: 1000; }
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(6px);
+}
+
+.panel {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 92px;
+  height: 92px;
+  background: $accent;
+  color: #fff;
+  border: 0;
+  font-size: 38px;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.nav {
+  display: grid;
+  gap: 22px;
+  text-align: center;
+}
+
+.link {
+  font-size: 28px;
+  font-weight: 950;
+  color: $text;
+  text-decoration: none;
+}
+
+.active { color: $accent; }

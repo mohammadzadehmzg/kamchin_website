@@ -1,0 +1,140 @@
+@use "../../assets/styles/variables.scss" as *;
+
+.footer {
+  background: #fff;
+  border-top: 1px solid $border;
+  padding: 0;
+}
+
+.grid {
+  max-width: $container;
+  margin: 0 auto;
+  padding: 26px 16px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.left {
+  border-left: 1px solid $border;
+  padding-left: 18px;
+  min-height: 220px;
+  display: grid;
+  align-content: space-between;
+}
+
+.mark {
+  width: 160px;
+  height: auto;
+  opacity: 0.95;
+}
+
+.rights {
+  color: $muted;
+  font-size: 14px;
+
+  span {
+    color: $accent;
+    font-weight: 800;
+  }
+}
+
+.center {
+  min-height: 220px;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 16px;
+}
+
+.illusWrap {
+  width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.illus {
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  opacity: 0.95;
+}
+
+.cta {
+  background: $accent;
+  color: #fff;
+  font-weight: 900;
+  border-radius: 12px;
+  padding: 14px 28px;
+  text-decoration: none;
+  box-shadow: 0 12px 26px rgba(239, 68, 68, 0.18);
+
+  &:hover { filter: brightness(0.97); }
+}
+
+.right {
+  border-right: 1px solid $border;
+  padding-right: 18px;
+  min-height: 220px;
+  display: grid;
+  align-content: center;
+  gap: 22px;
+  justify-items: end;
+}
+
+.row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 14px;
+  align-items: center;
+}
+
+.text {
+  color: $muted;
+  font-weight: 600;
+  text-align: left;
+  direction: ltr; // ایمیل/تلفن مرتب
+}
+
+.icon {
+  width: 36px;
+  height: 36px;
+  background: #fff;
+  border: 1px solid $border;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  color: $accent;
+}
+
+.social {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.socialBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid $border;
+  display: grid;
+  place-items: center;
+  text-decoration: none;
+  color: $muted;
+
+  &:hover {
+    color: $accent;
+    background: $panel2;
+  }
+}
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .left, .right { border: 0; padding: 0; min-height: unset; }
+  .right { justify-items: start; }
+  .text { text-align: right; direction: rtl; }
+}

@@ -1,0 +1,11 @@
+@use "../../assets/styles/variables.scss" as *;
+
+.wrap {
+  padding: 60px 0;
+  background: $panel2;
+  border-top: 1px solid $border;
+}
+
+.inner { max-width: 760px; }
+
+.actions { margin-top: 18px; }

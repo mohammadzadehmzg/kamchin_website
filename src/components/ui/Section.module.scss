@@ -1,0 +1,6 @@
+@use "../../assets/styles/variables.scss" as *;
+
+.head { display: grid; gap: 6px; margin-bottom: 12px; }
+.title { margin: 0; font-size: 22px; }
+.subtitle { color: $muted; font-size: 13px; }
+.body { }

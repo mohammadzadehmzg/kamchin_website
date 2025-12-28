@@ -1,0 +1,58 @@
+@use "../../assets/styles/variables.scss" as *;
+
+.card {
+  overflow: hidden;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 34px rgba(17, 24, 39, 0.10);
+  }
+}
+
+.media {
+  position: relative;
+  background: $panel2;
+  border-bottom: 1px solid $border;
+  padding: 14px;
+  display: grid;
+  place-items: center;
+  height: 230px;
+}
+
+.img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 220ms ease;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.78);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 200ms ease, transform 200ms ease;
+  display: grid;
+  place-items: center;
+}
+
+.overlayInner {
+  text-align: center;
+  display: grid;
+  gap: 8px;
+  color: $text;
+}
+
+.overlayTitle { font-weight: 950; }
+.overlaySub { color: $muted; font-weight: 700; font-size: 14px; }
+.line { width: 28px; height: 2px; background: $accent; justify-self: center; }
+
+.card:hover .overlay { opacity: 1; transform: translateY(0); }
+.card:hover .img { transform: scale(1.03); }
+
+.body { padding: 14px 16px 16px; }
+.name { font-weight: 950; }
+.meta { margin-top: 6px; color: $muted; font-weight: 600; }

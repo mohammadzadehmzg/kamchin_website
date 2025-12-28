@@ -1,0 +1,23 @@
+@use "../../assets/styles/variables.scss" as *;
+
+.nav { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.link {
+  padding: 8px 10px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  color: $muted;
+  background: transparent;
+
+  &:hover {
+    border-color: $border;
+    background: rgba(255,255,255,.03);
+    color: $text;
+  }
+}
+
+.active {
+  border-color: rgba(124,92,255,.38);
+  background: rgba(124,92,255,.14);
+  color: $text;
+}

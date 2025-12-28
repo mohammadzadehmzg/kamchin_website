@@ -1,0 +1,8 @@
+@use "../../assets/styles/variables.scss" as *;
+
+.card {
+  background: $panel;
+  border: 1px solid $border;
+  border-radius: $radius;
+  box-shadow: 0 10px 28px rgba(17, 24, 39, 0.06);
+}

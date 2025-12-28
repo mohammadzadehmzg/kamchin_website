@@ -1,0 +1,14 @@
+@use "../../assets/styles/variables.scss" as *;
+
+.input {
+  width: min(560px, 100%);
+  padding: 11px 12px;
+  border-radius: 14px;
+  border: 1px solid $border;
+  background: rgba(255,255,255,.03);
+  color: $text;
+  outline: none;
+
+  &::placeholder { color: rgba(170,180,208,.7); }
+  &:focus { border-color: rgba(124,92,255,.5); }
+}

@@ -1,0 +1,6 @@
+@use "../../assets/styles/variables.scss" as *;
+
+.card { padding: 16px; }
+.title { font-weight: 950; }
+.muted { color: $muted; margin-top: 6px; }
+.phone { margin-top: 10px; font-weight: 800; }
