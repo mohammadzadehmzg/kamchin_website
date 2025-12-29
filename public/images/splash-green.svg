@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600">
+  <defs>
+    <filter id="s" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="0.7"></feGaussianBlur>
+    </filter>
+  </defs>
+
+  <g filter="url(#s)">
+    <!-- main splash -->
+    <path fill="#16a34a" opacity="0.92" d="M690 108c46 34 80 90 52 136-25 41-88 42-125 68-39 27-50 82-94 97-47 16-89-33-134-30-46 3-81 57-125 50-43-7-63-67-96-95-34-29-96-28-110-70-14-43 39-86 52-127 13-40-14-95 19-123 33-29 90 8 132 0 43-8 82-60 123-50 40 10 50 78 85 98 36 21 99 3 121 46z"></path>
+
+    <!-- soft layer -->
+    <path fill="#bbf7d0" opacity="0.9" d="M820 340c20 18 34 49 19 70-14 20-46 14-66 26-22 13-29 42-53 49-26 7-48-22-72-23-24-1-45 24-67 18-22-6-28-37-44-52-17-15-49-9-57-29-8-22 18-44 23-65 5-20-11-48 6-62 18-15 49 7 69 5 20-2 41-26 60-18 18 8 18 43 33 55 16 12 55 0 69 16z"></path>
+
+    <!-- droplets -->
+    <circle cx="780" cy="130" r="26" fill="#16a34a" opacity="0.9"></circle>
+    <circle cx="720" cy="520" r="30" fill="#16a34a" opacity="0.9"></circle>
+    <circle cx="610" cy="70" r="14" fill="#16a34a" opacity="0.85"></circle>
+    <circle cx="860" cy="440" r="18" fill="#16a34a" opacity="0.85"></circle>
+  </g>
+</svg>

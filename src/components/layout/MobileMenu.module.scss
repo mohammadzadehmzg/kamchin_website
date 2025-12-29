@@ -1,47 +1,50 @@
-@use "../../assets/styles/variables.scss" as *;
-
-.overlay { position: fixed; inset: 0; z-index: 1000; }
+.root { position: fixed; inset: 0; z-index: 80; }
 
 .backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(6px);
+  background: rgba(16, 185, 129, 0.18); /* سبز کم‌رنگ */
+  backdrop-filter: blur(2px);
 }
 
 .panel {
   position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  padding: 24px;
-}
-
-.close {
-  position: absolute;
   top: 0;
   right: 0;
-  width: 92px;
-  height: 92px;
-  background: $accent;
-  color: #fff;
-  border: 0;
-  font-size: 38px;
-  font-weight: 950;
+  height: 100%;
+  width: min(420px, 86vw);
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(12px);
+  border-left: 1px solid rgba(0,0,0,.06);
+  box-shadow: -30px 0 80px rgba(0,0,0,.14);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.top { display:flex; justify-content: flex-end; }
+.close {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: rgba(255,255,255,.8);
   cursor: pointer;
 }
 
 .nav {
   display: grid;
-  gap: 22px;
-  text-align: center;
-}
+  gap: 10px;
 
-.link {
-  font-size: 28px;
-  font-weight: 950;
-  color: $text;
-  text-decoration: none;
+  a {
+    text-decoration: none;
+    color: rgba(17,24,39,.92);
+    background: rgba(0,0,0,.03);
+    border-radius: 14px;
+    padding: 14px 14px;
+    font-weight: 700;
+    transition: background 150ms ease, transform 150ms ease;
+    &:hover { background: rgba(0,0,0,.06); transform: translateY(-1px); }
+  }
 }
-
-.active { color: $accent; }

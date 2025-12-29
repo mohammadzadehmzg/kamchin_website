@@ -3,7 +3,6 @@
 .footer {
   background: #fff;
   border-top: 1px solid $border;
-  padding: 0;
 }
 
 .grid {
@@ -14,11 +13,13 @@
   grid-template-columns: 1fr 1.2fr 1fr;
   gap: 18px;
   align-items: center;
+
+  direction: rtl; // چون محتوای راست‌به‌چپ داری
 }
 
 .left {
-  border-left: 1px solid $border;
-  padding-left: 18px;
+  border-inline-start: 1px solid $border;  // به جای border-left
+  padding-inline-start: 18px;              // به جای padding-left
   min-height: 220px;
   display: grid;
   align-content: space-between;
@@ -28,15 +29,16 @@
   width: 160px;
   height: auto;
   opacity: 0.95;
+  display: block;
 }
 
 .rights {
+  font-size: 13px;
   color: $muted;
-  font-size: 14px;
 
   span {
-    color: $accent;
-    font-weight: 800;
+    color: $text;
+    font-weight: 700;
   }
 }
 
@@ -55,65 +57,69 @@
 }
 
 .illus {
-  max-width: 320px;
-  width: 100%;
+  width: min(320px, 100%);
   height: auto;
   opacity: 0.95;
+  display: block;
+  object-fit: contain;
 }
 
 .cta {
   background: $accent;
   color: #fff;
-  font-weight: 900;
-  border-radius: 12px;
-  padding: 14px 28px;
   text-decoration: none;
-  box-shadow: 0 12px 26px rgba(239, 68, 68, 0.18);
+  font-weight: 700;
+  padding: 10px 16px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
 
-  &:hover { filter: brightness(0.97); }
+
+  &:hover {
+    filter: brightness(0.95);
+  }
 }
 
 .right {
-  border-right: 1px solid $border;
-  padding-right: 18px;
+  border-inline-end: 1px solid $border;    // به جای border-right
+  padding-inline-end: 18px;                // به جای padding-right
   min-height: 220px;
   display: grid;
   align-content: center;
-  gap: 22px;
+  gap: 12px;
   justify-items: end;
 }
 
 .row {
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 14px;
+  gap: 10px;
   align-items: center;
+  width: 100%;
 }
 
 .text {
-  color: $muted;
-  font-weight: 600;
-  text-align: left;
-  direction: ltr; // ایمیل/تلفن مرتب
+  font-size: 13px;
+  line-height: 1.7;
+  color: $text;
+  text-align: right;
+  direction: rtl;
 }
 
 .icon {
   width: 36px;
   height: 36px;
-  background: #fff;
+  border-radius: 12px;
   border: 1px solid $border;
-  border-radius: 10px;
   display: grid;
   place-items: center;
-  color: $accent;
+  color: $muted;
 }
 
 .social {
-  margin-top: 12px;
   display: flex;
   gap: 10px;
   justify-content: flex-end;
+  padding-top: 6px;
 }
 
 .socialBtn {
@@ -133,8 +139,18 @@
 }
 
 @media (max-width: 900px) {
-  .grid { grid-template-columns: 1fr; }
-  .left, .right { border: 0; padding: 0; min-height: unset; }
-  .right { justify-items: start; }
-  .text { text-align: right; direction: rtl; }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .left,
+  .right {
+    border: 0;
+    padding: 0;
+    min-height: unset;
+  }
+
+  .right {
+    justify-items: start;
+  }
 }

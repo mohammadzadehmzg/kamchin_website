@@ -1,69 +1,101 @@
-@use "../../assets/styles/variables.scss" as *;
+/* src/features/categories/CategoryStrip.module.scss */
 
 .wrap {
-  max-width: $container;
-  margin: 0 auto;
-  padding: 56px 16px 30px;
-  position: relative;
+  margin-top: 28px;
 }
 
 .head {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  justify-content: flex-end;
   gap: 12px;
+  margin-bottom: 12px;
 }
 
-.h2 { margin: 0; font-size: 20px; font-weight: 950; }
-.underline { width: 44px; height: 2px; background: $accent; display: inline-block; }
-
-.row {
-  margin-top: 28px;
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 10px;
-  align-items: start;
+.h2 {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 0;
 }
 
-.item {
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  display: grid;
-  justify-items: center;
-  gap: 14px;
-  padding: 14px 10px;
-  border-radius: 14px;
-  transition: transform 150ms ease, background 150ms ease;
-
-  &:hover {
-    transform: translateY(-4px);
-    background: $panel2;
-  }
+.underline {
+  width: 34px;
+  height: 3px;
+  border-radius: 999px;
+  background: #ef4444;
 }
 
-.icon { color: $accent; }
-.label { color: $text; font-weight: 800; }
-
-.arrows {
-  position: absolute;
-  left: 16px;
-  top: 66px;
+.viewport {
+  position: relative;
   display: grid;
-  gap: 10px;
+  grid-template-columns: 44px 1fr 44px;
+  gap: 12px;
+  align-items: center;
 }
 
 .arrow {
   width: 44px;
   height: 44px;
-  border: 0;
-  background: #fff;
-  color: $accent;
-  font-size: 22px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.85);
   cursor: pointer;
-  box-shadow: 0 12px 26px rgba(17, 24, 39, 0.08);
+  font-size: 22px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  transition: transform 150ms ease, background 150ms ease;
+
+  &:hover {
+    transform: translateY(-1px);
+    background: #fff;
+  }
 }
 
-@media (max-width: 900px) {
-  .row { grid-template-columns: repeat(3, 1fr); }
+.scroller {
+  display: flex;
+  justify-content: center; /* وسط چین */
+  gap: 14px;
+  overflow-x: auto;
+  padding: 10px 6px 18px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  scroll-snap-type: x mandatory;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* کارت‌ها طوری که تقریبا 3 تا در عرض دیده بشه */
+.item {
+  flex: 0 0 auto;
+  width: clamp(150px, 22vw, 190px);
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  padding: 14px 10px;
+  border-radius: 16px;
+  transition: transform 150ms ease, background 150ms ease;
+  scroll-snap-align: center;
+
+  &:hover {
+    transform: translateY(-3px);
+    background: rgba(16, 185, 129, 0.08); /* سبز خیلی کم‌رنگ */
+  }
+}
+
+.icon {
+  color: #ef4444;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
 }

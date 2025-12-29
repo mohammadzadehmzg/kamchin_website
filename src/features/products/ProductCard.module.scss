@@ -56,3 +56,19 @@
 .body { padding: 14px 16px 16px; }
 .name { font-weight: 950; }
 .meta { margin-top: 6px; color: $muted; font-weight: 600; }
+
+.more {
+  display: inline-flex;
+  margin-top: 10px;
+  font-weight: 800;
+  color: #ef4444;
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.card:hover .more {
+  opacity: 1;
+  transform: translateY(0);
+}

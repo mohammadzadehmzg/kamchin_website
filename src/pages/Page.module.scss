@@ -1,66 +1,9 @@
 @use "../assets/styles/variables.scss" as *;
 
-.page {
-  min-height: 100vh;
-  background: $bg;
-  color: $text;
-  padding-bottom: 96px; // جا برای فوتر
-}
-
-.container {
-  max-width: $container;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.section {
-  margin-top: 80px;
-
-  &Header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 32px;
-
-    h2 {
-      font-size: 22px;
-      font-weight: 700;
-      position: relative;
-      padding-bottom: 10px;
-
-      &::after {
-        content: "";
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        width: 36px;
-        height: 3px;
-        background: $accent;
-        border-radius: 3px;
-      }
-    }
-  }
-}
-
 .card {
-  background: $panel;
+  border: 1px solid $border;
   border-radius: $radius;
-  box-shadow: $shadow;
-  padding: 20px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-
-  &:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
-  }
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 24px;
-}
-
-.scrollSpace {
-  height: 120px;
+  background: $panel;
+  padding: 18px;
+  box-shadow: 0 10px 28px rgba(17, 24, 39, 0.06);
 }
