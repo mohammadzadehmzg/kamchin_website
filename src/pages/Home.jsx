@@ -1,103 +1,143 @@
-// src/pages/Home.jsx
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import styles from "./Home.module.scss";
+import { Globe, Instagram, MessageCircle, Twitter } from "lucide-react";
 
-import Button from "../components/ui/Button.jsx";
 import CategoryStrip from "../features/categories/CategoryStrip.jsx";
 import categories from "../features/categories/categories.mock.js";
 
 import { getProducts } from "../services/productsService.js";
-import ProductCard from "../features/products/ProductCard.jsx";
+import ProductsCarousel from "../features/products/ProductsCarousel.jsx";
 
 import AboutStrip from "../components/sections/AboutStrip.jsx";
-import ProductShowcase from "../components/sections/ProductShowcase.jsx";
 
 export default function Home() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [activeCategoryId, setActiveCategoryId] = useState(null);
+
+    const [langOpen, setLangOpen] = useState(false);
+    const langRef = useRef(null);
 
     useEffect(() => {
-        let mounted = true;
+        let alive = true;
 
-        (async () => {
+        const run = async () => {
             setLoading(true);
             try {
                 const res = await getProducts();
-                if (mounted) setProducts(Array.isArray(res) ? res : []);
+                if (!alive) return;
+                setProducts(Array.isArray(res) ? res : []);
             } catch {
-                if (mounted) setProducts([]);
+                if (!alive) return;
+                setProducts([]);
             } finally {
-                if (mounted) setLoading(false);
+                if (alive) setLoading(false);
             }
-        })();
+        };
+
+        run();
 
         return () => {
-            mounted = false;
+            alive = false;
         };
     }, []);
 
-    const onCategorySelect = () => {
-        // فعلاً فقط اسکرول به بخش محصولات. (بعداً اگر فیلتر خواستی همینجا وصل می‌کنی)
-        const el = document.getElementById("products");
-        el?.scrollIntoView({ behavior: "smooth", block: "start" });
-    };
+    const categoryItems = useMemo(() => {
+        return Array.isArray(categories) ? categories : [];
+    }, []);
 
-    const heroText = useMemo(
-        () => ({
-            p1: "شرکت کامچین در سال ۱۳۵۹ با هدف تولید محصولات غذایی با کیفیت بالا، فعالیت خود را در شهر تهران آغاز کرد.",
-            p2: "کامچین با تمرکز بر تولید رب گوجه‌فرنگی، مربا و کمپوت، به تدریج سبد محصولات خود را گسترش داد و با برند «کامچین» و شعار «غذای ایرانی، همیشه و همه‌جا در دسترس»، به یکی از بزرگ‌ترین تولیدکنندگان غذای آماده در ایران تبدیل شد.",
-        }),
-        []
-    );
+    useEffect(() => {
+        const onDoc = (e) => {
+            if (!langRef.current) return;
+            if (!langRef.current.contains(e.target)) setLangOpen(false);
+        };
+        document.addEventListener("mousedown", onDoc);
+        return () => document.removeEventListener("mousedown", onDoc);
+    }, []);
 
     return (
         <div className={styles.page}>
-            {/* 1) Hero معرفی کامچین (اول صفحه) */}
+            {/* Hero بالا */}
             <section className={styles.hero}>
-                <div className={styles.heroCard}>
-                    <h1 className={styles.h1}>کامچین</h1>
-                    <p className={styles.p}>{heroText.p1}</p>
-                    <p className={styles.p}>{heroText.p2}</p>
+                <img
+                    className={styles.heroImg}
+                    src="/images/banners/hero.jpg"
+                    alt="Kamchin hero"
+                    loading="eager"
+                />
 
-                    <div className={styles.heroActions}>
-                        <Button to="/products" variant="primary">
-                            مشاهده محصولات
-                        </Button>
-                        <Button to="/contact" variant="ghost">
-                            تماس
-                        </Button>
+                {/* آیکن‌های کنار وقتی بالای صفحه هستیم (هدر مخفیه) */}
+                <aside className={styles.sideBar} aria-label="شبکه‌های اجتماعی و زبان">
+                    <a
+                        className={styles.sideLink}
+                        href="https://instagram.com/"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="Instagram"
+                        title="Instagram"
+                    >
+                        <Instagram size={18} />
+                    </a>
+
+                    {/* لینک واتساپ رو خودت بذار */}
+                    <a className={styles.sideLink} href="#" aria-label="WhatsApp" title="WhatsApp">
+                        <MessageCircle size={18} />
+                    </a>
+
+                    <a
+                        className={styles.sideLink}
+                        href="https://x.com/"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="X / Twitter"
+                        title="X / Twitter"
+                    >
+                        <Twitter size={18} />
+                    </a>
+
+                    <div className={styles.langWrap} ref={langRef}>
+                        <button
+                            type="button"
+                            className={styles.sideBtn}
+                            onClick={() => setLangOpen((v) => !v)}
+                            aria-label="زبان"
+                            title="زبان"
+                        >
+                            <Globe size={18} />
+                        </button>
+
+                        {langOpen && (
+                            <div className={styles.langDrop}>
+                                <button type="button" onClick={() => setLangOpen(false)}>فارسی</button>
+                                <button type="button" onClick={() => setLangOpen(false)}>English</button>
+                            </div>
+                        )}
                     </div>
-                </div>
-
-                <div className={styles.heroMedia} aria-hidden="true" />
+                </aside>
             </section>
 
-            {/* 2) دسته‌بندی */}
-            <CategoryStrip title="محصولات کامچین" items={categories} onSelect={onCategorySelect} />
-
-            {/* 3) محصولات منتخب (مثل نمونه کاله) */}
-            <ProductShowcase />
-
-            {/* 4) لیست محصولات */}
-            <section id="products" className={styles.products}>
-                <div className={styles.sectionHead}>
-                    <h2 className={styles.h2}>محصولات منتخب</h2>
-                    <span className={styles.underline} />
-                </div>
-
-                {loading ? (
-                    <div className={styles.loading}>در حال دریافت محصولات...</div>
-                ) : (
-                    <div className={styles.grid}>
-                        {products.map((p) => (
-                            <ProductCard key={p.id} product={p} />
-                        ))}
-                    </div>
-                )}
+            {/* دسته‌بندی‌ها */}
+            <section className={styles.section}>
+                <CategoryStrip
+                    title="محصولات کامچین"
+                    items={categoryItems}
+                    onSelect={(id) => setActiveCategoryId(id)}
+                />
             </section>
 
-            {/* 5) درباره ما پایین‌تر */}
-            <AboutStrip />
+            {/* لیست محصولات */}
+            <section className={styles.section}>
+                <ProductsCarousel
+                    title={loading ? "در حال دریافت محصولات..." : "محصولات"}
+                    products={products}
+                    filterCategoryId={activeCategoryId}
+                />
+            </section>
+
+            {/* درباره کامچین */}
+            <section className={styles.section}>
+                <AboutStrip />
+            </section>
         </div>
     );
 }

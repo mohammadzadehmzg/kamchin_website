@@ -5,7 +5,7 @@ import {
     Globe, Search, Instagram, Twitter, Menu, X,
 } from "lucide-react";
 
-export default function Header() {
+export default function Header({ visible = true }) {
     const [menuOpen, setMenuOpen] = useState(false);
     const [langOpen, setLangOpen] = useState(false);
     const [searchOpen, setSearchOpen] = useState(false);
@@ -27,12 +27,14 @@ export default function Header() {
 
     useEffect(() => {
         document.body.style.overflow = menuOpen ? "hidden" : "";
-        return () => { document.body.style.overflow = ""; };
+        return () => {
+            document.body.style.overflow = "";
+        };
     }, [menuOpen]);
 
     return (
         <>
-            <header className={styles.header}>
+            <header className={`${styles.header} ${visible ? "" : styles.hidden}`}>
                 <div className={styles.leftIcons}>
                     <div className={styles.iconRow}>
                         <button
@@ -84,7 +86,11 @@ export default function Header() {
                 </div>
 
                 <div className={styles.brand}>
-                    <img className={styles.logo} src="/images/logo.png" alt="Kamchin" />
+                    <img
+                        className={styles.logo}
+                        src="/images/cropped-Kamchin-logo-1-1-300x290-1.png"
+                        alt="Kamchin"
+                    />
                 </div>
 
                 <div className={styles.right}>
