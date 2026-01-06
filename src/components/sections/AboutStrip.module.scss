@@ -6,6 +6,30 @@
   border-top: 1px solid $border;
 }
 
-.inner { max-width: 760px; }
+.inner {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 22px;
+  align-items: center;
+}
+
+.content { max-width: 760px; }
+
+.media {
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  width: min(520px, 100%);
+  height: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 22px 60px rgba(0,0,0,.10);
+}
 
 .actions { margin-top: 18px; }
+
+@media (max-width: 900px) {
+  .inner { grid-template-columns: 1fr; }
+}

@@ -13,9 +13,7 @@ function normalizeProduct(p) {
     // optional meta
     const weight = p.weight ?? p.netWeight ?? "";
     const type = p.type ?? "";
-    const isExport = Boolean(p.isExport ?? p.export ?? false);
-
-    return { id, title, subtitle, image, categoryId, weight, type, isExport };
+    return { id, title, subtitle, image, categoryId, weight, type };
 }
 
 export default function ProductsCarousel({
@@ -69,9 +67,7 @@ export default function ProductsCarousel({
 
                         <div className={styles.meta}>
                             <div className={styles.titleRow}>
-                                <h3 className={styles.title}>{p.title}</h3>
-                                {p.isExport && <span className={styles.badge}>صادراتی</span>}
-                            </div>
+                                <h3 className={styles.title}>{p.title}</h3>                            </div>
 
                             {p.subtitle ? <p className={styles.subtitle}>{p.subtitle}</p> : null}
 
@@ -118,7 +114,7 @@ export default function ProductsCarousel({
                             <div className={styles.modalText}>
                                 <div className={styles.modalTitleRow}>
                                     <h3 className={styles.modalTitle}>{active.title}</h3>
-                                    {active.isExport && <span className={styles.badge}>صادراتی</span>}
+                                    
                                 </div>
 
                                 {active.subtitle ? (

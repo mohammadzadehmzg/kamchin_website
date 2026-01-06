@@ -1,9 +1,9 @@
-.root { position: fixed; inset: 0; z-index: 80; }
+.root { position: fixed; inset: 0; z-index: 90; }
 
 .backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(16, 185, 129, 0.18); /* سبز کم‌رنگ */
+  background: rgba(16, 185, 129, 0.18);
   backdrop-filter: blur(2px);
 }
 
@@ -24,6 +24,7 @@
 }
 
 .top { display:flex; justify-content: flex-end; }
+
 .close {
   width: 42px;
   height: 42px;
@@ -37,14 +38,17 @@
   display: grid;
   gap: 10px;
 
-  a {
-    text-decoration: none;
+  button {
+    border: 0;
+    text-align: start;
     color: rgba(17,24,39,.92);
     background: rgba(0,0,0,.03);
     border-radius: 14px;
     padding: 14px 14px;
     font-weight: 700;
+    cursor: pointer;
     transition: background 150ms ease, transform 150ms ease;
+
     &:hover { background: rgba(0,0,0,.06); transform: translateY(-1px); }
   }
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./Products.module.scss";
 import { getProducts } from "../services/productsService.js";
 import ProductCard from "../features/products/ProductCard.jsx";

@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Page.module.scss";
 
 export default function About() {
@@ -6,11 +5,22 @@ export default function About() {
         <section className="container section">
             <h1 className="h1">درباره کامچین</h1>
             <div className={styles.card}>
-                <p className="muted">
-                    رکت کامچین در سال 1359 با هدف تولید محصولات غذایی با کیفیت بالا، فعالیت خود را در شهر تهران آغاز کرد.
-
-                    کامچین با تمرکز بر تولید رب گوجه‌فرنگی، مربا و کمپوت، به تدریج سبد محصولات خود را گسترش داد و با برند «کامچین» و شعار «غذای ایرانی، همیشه و همه‌جا در دسترس»، به یکی از بزرگ‌ترین تولیدکنندگان غذای آماده در ایران تبدیل شد.
+                <p className="muted" style={{ whiteSpace: "pre-line" }}>
+                    {"شركت کامچین در سال 1359 با هدف توليد محصولات غذايى با كيفيت بالا، فعاليت خود را در\n" +
+                        "شهريار تهران اغاز كرد\n\n" +
+                        "کامچین با تمركز بر توليد رب كوجه فرنكى، مربا و كميوت، به تدريج سبد محصولات خود را\n" +
+                        "گسترش داد  و با  شعار غذاى ايراني، هميشه و همه جا  دسترس، به يكى از\n" +
+                        "بزركترين توليدكنندكان غذاى آماده در ايران تبديل شد"}
                 </p>
+
+                <div style={{ marginTop: 18 }}>
+                    <img
+                        src="https://kamchin.com/wp-content/uploads/2024/09/qc-2048x1903.webp"
+                        alt="کامچین"
+                        style={{ width: "100%", borderRadius: 18, border: "1px solid rgba(0,0,0,.08)" }}
+                        loading="lazy"
+                    />
+                </div>
             </div>
         </section>
     );

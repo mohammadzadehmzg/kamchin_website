@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./Footer.module.scss";
 import { MapPin, Mail, Phone, Instagram, Twitter } from "lucide-react";
 

@@ -1,17 +1,23 @@
 .shell {
-  --header-h: 86px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
+.shellHome {
+  /* صفحه‌ی اول: هدر ابتدا مخفی است، پس محتوا از بالای صفحه شروع می‌شود */
+}
+
+.shellInner {
+  /* صفحات داخلی: هدر همیشه دیده می‌شود و روی محتوا نمی‌افتد */
+  --header-h: 86px;
+}
+
 .main {
   flex: 1;
-  padding-top: var(--header-h);
   padding-bottom: 56px;
 }
 
-/* صفحه Home هدر تا اسکرول مخفیه، پس فضا رزرو نکن */
-.shellHome .main {
-  padding-top: 0;
+.shellInner .main {
+  padding-top: var(--header-h);
 }

@@ -1,143 +1,93 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
-import { Globe, Instagram, MessageCircle, Twitter } from "lucide-react";
-
-import CategoryStrip from "../features/categories/CategoryStrip.jsx";
-import categories from "../features/categories/categories.mock.js";
 
 import { getProducts } from "../services/productsService.js";
-import ProductsCarousel from "../features/products/ProductsCarousel.jsx";
+import ProductCard from "../features/products/ProductCard.jsx";
 
 import AboutStrip from "../components/sections/AboutStrip.jsx";
+import ProductShowcase from "../components/sections/ProductShowcase.jsx";
+
+import useI18n from "../i18n/useI18n.js";
 
 export default function Home() {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [activeCategoryId, setActiveCategoryId] = useState(null);
+  const { t } = useI18n();
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    const [langOpen, setLangOpen] = useState(false);
-    const langRef = useRef(null);
+  useEffect(() => {
+    let mounted = true;
 
-    useEffect(() => {
-        let alive = true;
+    (async () => {
+      setLoading(true);
+      try {
+        const res = await getProducts();
+        if (mounted) setProducts(Array.isArray(res) ? res : []);
+      } catch {
+        if (mounted) setProducts([]);
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    })();
 
-        const run = async () => {
-            setLoading(true);
-            try {
-                const res = await getProducts();
-                if (!alive) return;
-                setProducts(Array.isArray(res) ? res : []);
-            } catch {
-                if (!alive) return;
-                setProducts([]);
-            } finally {
-                if (alive) setLoading(false);
-            }
-        };
+    return () => {
+      mounted = false;
+    };
+  }, []);
 
-        run();
+  const featured = useMemo(() => {
+    return products.filter((p) => p?.featured).slice(0, 8);
+  }, [products]);
 
-        return () => {
-            alive = false;
-        };
-    }, []);
+  const openProduct = (p) => {
+    if (!p?.id) return;
+    window.open(`/product/${p.id}`, "_blank", "noopener,noreferrer");
+  };
 
-    const categoryItems = useMemo(() => {
-        return Array.isArray(categories) ? categories : [];
-    }, []);
+  return (
+    <div className={styles.page}>
+      <section id="hero" className={styles.sectionHero}>
+        <ProductShowcase products={products} />
+      </section>
 
-    useEffect(() => {
-        const onDoc = (e) => {
-            if (!langRef.current) return;
-            if (!langRef.current.contains(e.target)) setLangOpen(false);
-        };
-        document.addEventListener("mousedown", onDoc);
-        return () => document.removeEventListener("mousedown", onDoc);
-    }, []);
+      <section id="products" className={styles.section}>
+        <div className="container">
+          <div className={styles.marketRow}>
+            <Link to="/market/domestic" className={styles.marketCard}>
+              <div className={styles.marketTitle}>محصولات داخلی</div>
+              <div className={styles.marketDesc}>مشاهده دسته‌بندی و محصولات بازار داخلی</div>
+            </Link>
+            <Link to="/market/export" className={styles.marketCard}>
+              <div className={styles.marketTitle}>محصولات صادراتی</div>
+              <div className={styles.marketDesc}>مشاهده دسته‌بندی و محصولات بازار صادرات</div>
+            </Link>
+          </div>
 
-    return (
-        <div className={styles.page}>
-            {/* Hero بالا */}
-            <section className={styles.hero}>
-                <img
-                    className={styles.heroImg}
-                    src="/images/banners/hero.jpg"
-                    alt="Kamchin hero"
-                    loading="eager"
-                />
+          <div className={styles.featuredHeader}>
+            <h2 className="h2">{loading ? "در حال دریافت محصولات..." : "منتخب محصولات"}</h2>
+            <p className="muted">برای دیدن جزئیات هر محصول، روی کارت آن کلیک کنید.</p>
+          </div>
 
-                {/* آیکن‌های کنار وقتی بالای صفحه هستیم (هدر مخفیه) */}
-                <aside className={styles.sideBar} aria-label="شبکه‌های اجتماعی و زبان">
-                    <a
-                        className={styles.sideLink}
-                        href="https://instagram.com/"
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label="Instagram"
-                        title="Instagram"
-                    >
-                        <Instagram size={18} />
-                    </a>
-
-                    {/* لینک واتساپ رو خودت بذار */}
-                    <a className={styles.sideLink} href="#" aria-label="WhatsApp" title="WhatsApp">
-                        <MessageCircle size={18} />
-                    </a>
-
-                    <a
-                        className={styles.sideLink}
-                        href="https://x.com/"
-                        target="_blank"
-                        rel="noreferrer"
-                        aria-label="X / Twitter"
-                        title="X / Twitter"
-                    >
-                        <Twitter size={18} />
-                    </a>
-
-                    <div className={styles.langWrap} ref={langRef}>
-                        <button
-                            type="button"
-                            className={styles.sideBtn}
-                            onClick={() => setLangOpen((v) => !v)}
-                            aria-label="زبان"
-                            title="زبان"
-                        >
-                            <Globe size={18} />
-                        </button>
-
-                        {langOpen && (
-                            <div className={styles.langDrop}>
-                                <button type="button" onClick={() => setLangOpen(false)}>فارسی</button>
-                                <button type="button" onClick={() => setLangOpen(false)}>English</button>
-                            </div>
-                        )}
-                    </div>
-                </aside>
-            </section>
-
-            {/* دسته‌بندی‌ها */}
-            <section className={styles.section}>
-                <CategoryStrip
-                    title="محصولات کامچین"
-                    items={categoryItems}
-                    onSelect={(id) => setActiveCategoryId(id)}
-                />
-            </section>
-
-            {/* لیست محصولات */}
-            <section className={styles.section}>
-                <ProductsCarousel
-                    title={loading ? "در حال دریافت محصولات..." : "محصولات"}
-                    products={products}
-                    filterCategoryId={activeCategoryId}
-                />
-            </section>
-
-            {/* درباره کامچین */}
-            <section className={styles.section}>
-                <AboutStrip />
-            </section>
+          <div className={styles.grid}>
+            {featured.map((p) => (
+              <ProductCard key={p.id} product={p} onOpen={openProduct} />
+            ))}
+          </div>
         </div>
-    );
+      </section>
+
+      <section id="about" className={styles.section}>
+        <AboutStrip />
+      </section>
+
+      <section id="contact" className={styles.section}>
+        <div className="container">
+          <div className={styles.contactCard}>
+            <h2 className={styles.contactTitle}>{t("sections.contact")}</h2>
+            <p className={styles.contactText}>info@kamchin.com</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
