@@ -12,7 +12,9 @@
   cursor: pointer;
   user-select: none;
 
-  font-weight: 900;
+  font-family: var(--font-ui);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.15px;
   line-height: 1;
 
   border: 1px solid transparent;

@@ -11,7 +11,7 @@ const iconMap = {
     veggie: Salad,
 };
 
-export default function CategoryStrip({ title = "محصولات کامچین", items = [], onSelect }) {
+export default function CategoryStrip({ title = "فراورده های کامچین", items = [], onSelect }) {
     const scrollerRef = useRef(null);
 
     const icons = useMemo(() => iconMap, []);

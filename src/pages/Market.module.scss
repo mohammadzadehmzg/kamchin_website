@@ -26,24 +26,50 @@
   background: rgba(0,0,0,0.06);
 }
 
-.catTabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+/* کارت‌های فیلتر دسته‌بندی مثل رفرنس Main pro */
+.catCards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 18px;
   margin: 10px 0 22px;
 }
 
-.catTab {
+.catCard {
   text-decoration: none;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,0.10);
+  color: inherit;
   background: #fff;
-  font-weight: 800;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 22px;
+  min-height: 96px;
+  display: grid;
+  place-items: center;
+  gap: 8px;
+  padding: 14px 10px;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease;
+}
+
+.catCard:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+}
+
+.catIcon {
+  color: rgba(17,24,39,0.58);
+}
+
+.catLabel {
+  font-weight: 900;
+  font-size: 14px;
+  color: rgba(17,24,39,0.9);
 }
 
 .catActive {
-  background: rgba(0,0,0,0.06);
+  border-color: rgba(239, 68, 68, 0.55);
+  box-shadow: 0 12px 26px rgba(239, 68, 68, 0.12);
+}
+
+.catActive .catIcon {
+  color: rgba(239, 68, 68, 0.9);
 }
 
 .grid {

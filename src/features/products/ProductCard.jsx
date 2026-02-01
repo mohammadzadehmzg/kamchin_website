@@ -1,6 +1,9 @@
 import styles from "./ProductCard.module.scss";
+import { resolvePic } from "../../utils/asset.js";
 
-export default function ProductCard({ product, onOpen }) {
+export default function ProductCard({ product, onOpen, onAddToCart }) {
+    if (!product) return null;
+
     const title =
         product?.titleFa ??
         product?.title ??
@@ -8,35 +11,41 @@ export default function ProductCard({ product, onOpen }) {
         product?.name ??
         "محصول";
 
-    const img = product?.image ?? product?.img ?? product?.cover ?? "";
+    const imgRaw = product?.image ?? product?.img ?? product?.cover ?? "";
+    const img = resolvePic(imgRaw) || imgRaw;
     const desc = product?.description ?? product?.desc ?? "";
-    const weight = product?.weight ?? product?.netWeight ?? product?.size ?? "";
-    const sku = product?.sku ?? product?.code ?? "";
 
     const handleOpen = () => onOpen?.(product);
+    const handleAdd = (e) => {
+        e.stopPropagation(); // 👈 کلیک کارت فعال نشه
+        onAddToCart?.(product);
+    };
 
     return (
-        <article className={styles.card} onClick={handleOpen} role="button" tabIndex={0}
-                 onKeyDown={(e) => {
-                     if (e.key === "Enter" || e.key === " ") handleOpen();
-                 }}
-                 aria-label={`مشاهده جزئیات ${title}`}
+        <article
+            className={styles.card}
+            onClick={handleOpen}
+            role="button"
+            tabIndex={0}
+            aria-label={`مشاهده جزئیات ${title}`}
         >
             <div className={styles.media}>
-                {img ? <img src={img} alt={title} loading="lazy" /> : null}
+                {img && <img src={img} alt={title} loading="lazy" />}
+
+                {/* دکمه افزودن */}
+                <button
+                    className={styles.addBtn}
+                    onClick={handleAdd}
+                    aria-label="افزودن به سبد خرید"
+                >
+                    +
+                </button>
             </div>
 
             <div className={styles.body}>
-                <div className={styles.title}>{title}</div>
+                <h3 className={styles.title}>{title}</h3>
 
-                {(weight || sku) && (
-                    <div className={styles.metaRow}>
-                        {weight ? <span>وزن: {weight}</span> : null}
-                        {sku ? <span>کد: {sku}</span> : null}
-                    </div>
-                )}
-
-                {desc ? <div className={styles.desc}>{desc}</div> : null}
+                {desc && <p className={styles.desc}>{desc}</p>}
 
                 <div className={styles.more}>مشاهده جزئیات ←</div>
             </div>

@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 export const LANGS = /** @type {const} */ ({
     fa: "fa",
     en: "en",
@@ -16,24 +15,35 @@ export const translations = {
         sections: {
             hero: "معرفی",
             products: "محصولات",
+            latest_site_posts: "جدیدترین مطالب سایت",
+            new_kamchin_products: "فراورده های جدید کامچین",
             about: "درباره ما",
             contact: "تماس با ما",
         },
         ui: {
             language: "زبان",
             search: "جستجو",
+            search_placeholder: "جستجو...",
+            open_menu: "منو",
+            close_menu: "بستن",
             more: "اطلاعات بیشتر ...",
+            add_to_cart: "افزودن به سبد خرید",
+            added_to_cart: "به سبد خرید اضافه شد",
+            prev: "قبلی",
+            next: "بعدی",
+            back_to_top: "↑ برو بالا",
+            portal_login: "ورود به پورتال سازمان",
             close: "بستن",
         },
         title: {
             home: "خانه",
             products: "محصولات",
             about: "درباره ما",
-            contact: "تماس با ما",
+            contact: "Contact",
         },
     },
     en: {
-        brand: "Kamchin",
+        brand: "کامچین",
         nav: {
             home: "Home",
             products: "Products",
@@ -43,13 +53,24 @@ export const translations = {
         sections: {
             hero: "Overview",
             products: "Products",
+            latest_site_posts: "Latest site posts",
+            new_kamchin_products: "New Kamchin products",
             about: "About us",
             contact: "Contact",
         },
         ui: {
             language: "Language",
             search: "Search",
+            search_placeholder: "Search...",
+            open_menu: "Menu",
+            close_menu: "Close",
             more: "Learn more...",
+            add_to_cart: "Add to cart",
+            added_to_cart: "Added to cart",
+            prev: "Previous",
+            next: "Next",
+            back_to_top: "↑ Back to top",
+            portal_login: "Organization portal",
             close: "Close",
         },
         title: {

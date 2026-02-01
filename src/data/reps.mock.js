@@ -1,6 +1,2 @@
-import axios from "axios";
-
-export const axiosClient = axios.create({
-    baseURL: import.meta.env.VITE_API_BASE_URL || "",
-    timeout: 15000,
-});
+// Mock data (no network calls). This keeps dev builds stable until Golvash APIs are wired.
+export default [];

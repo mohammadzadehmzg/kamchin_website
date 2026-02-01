@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useCart } from "../features/cart/CartContext.jsx";
+import { toast } from "../components/ui/ToastHost.jsx";
 import styles from "./ProductDetail.module.scss";
 
 import { getProducts } from "../services/productsService.js";
@@ -10,6 +12,7 @@ function categoryTitle(id) {
 }
 
 export default function ProductDetail() {
+  const cart = useCart();
   const { id } = useParams();
   const [products, setProducts] = useState([]);
 
@@ -61,6 +64,9 @@ export default function ProductDetail() {
 
           <div className={styles.actions}>
             <Link to={`/market/${product.market}/${product.categoryId}`} className={styles.back}>بازگشت به لیست</Link>
+            <button type="button" className={styles.add} onClick={() => { cart.add(product.id); toast(`«${product.name}» به سبد خرید اضافه شد`, "success"); }}>
+              افزودن به سبد خرید
+            </button>
           </div>
         </div>
       </div>

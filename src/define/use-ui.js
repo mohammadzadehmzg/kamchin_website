@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import { useContext } from "react";
 import UIContext from "./ui-context.js";
 

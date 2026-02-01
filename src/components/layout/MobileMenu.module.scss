@@ -1,9 +1,13 @@
-.root { position: fixed; inset: 0; z-index: 90; }
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+}
 
 .backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(16, 185, 129, 0.18);
+  background: rgba(21,128,61,0.15); // سبز کمرنگ پشت منو
   backdrop-filter: blur(2px);
 }
 
@@ -11,9 +15,9 @@
   position: absolute;
   top: 0;
   right: 0;
-  height: 100%;
-  width: min(420px, 86vw);
-  background: rgba(255,255,255,.92);
+  height: 100vh;
+  width: min(86vw, 360px);
+  background: rgba(255,255,255,.95);
   backdrop-filter: blur(12px);
   border-left: 1px solid rgba(0,0,0,.06);
   box-shadow: -30px 0 80px rgba(0,0,0,.14);
@@ -23,15 +27,21 @@
   gap: 18px;
 }
 
-.top { display:flex; justify-content: flex-end; }
+.top {
+  display:flex;
+  justify-content: flex-end;
+}
 
 .close {
   width: 42px;
   height: 42px;
   border-radius: 12px;
   border: 1px solid rgba(0,0,0,.08);
-  background: rgba(255,255,255,.8);
+  background: rgba(21,128,61,.15); // سبز کم رنگ دکمه بستن
+  color: #fff;
   cursor: pointer;
+  display: grid;
+  place-items: center;
 }
 
 .nav {
@@ -41,14 +51,30 @@
   button {
     border: 0;
     text-align: start;
-    color: rgba(17,24,39,.92);
-    background: rgba(0,0,0,.03);
+    color: #15803d; // سبز کامچینی
+    background: rgba(21,128,61,.05);
     border-radius: 14px;
     padding: 14px 14px;
     font-weight: 700;
     cursor: pointer;
     transition: background 150ms ease, transform 150ms ease;
 
-    &:hover { background: rgba(0,0,0,.06); transform: translateY(-1px); }
+    &:hover {
+      background: rgba(21,128,61,.12);
+      transform: translateY(-1px);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .panel {
+    width: 100vw;
+  }
+  .close {
+    width: 36px;
+    height: 36px;
+  }
+  .nav button {
+    padding: 12px 12px;
   }
 }

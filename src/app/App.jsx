@@ -1,74 +1,114 @@
-import { useCallback, useEffect, useMemo, useState, useSyncExternalStore } from "react";
+import {
+    useCallback,
+    useEffect,
+    useMemo,
+    useState,
+    useSyncExternalStore,
+} from "react";
 import { Routes, Route, useLocation, useNavigate } from "react-router-dom";
+
 import { routes } from "./routes.jsx";
 
 import Header from "../components/layout/Header.jsx";
 import Footer from "../components/layout/Footer.jsx";
 import MobileMenu from "../components/layout/MobileMenu.jsx";
-import styles from "./AppShell.module.scss";
+import ToastHost from "../components/ui/ToastHost.jsx";
+import BottomActions from "../components/sections/BottomActions.jsx";
 
 import UIProvider from "@/define/ui.jsx";
 import useI18n from "../i18n/useI18n.js";
 
+import styles from "./AppShell.module.scss";
+import FloatingChatButton from "@/components/ui/FloatingActions.jsx";
+
 const HEADER_REVEAL_PX = 8;
 const HOME_SECTIONS = ["hero", "products", "about", "contact"];
 
+/* ---------------- Header visibility on home ---------------- */
+
 function useHeaderVisible(enabled) {
-    const get = () => {
+    const getSnapshot = () => {
         if (!enabled || typeof window === "undefined") return true;
-        const y = window.scrollY || document.documentElement.scrollTop || 0;
+        const y =
+            window.scrollY ||
+            document.documentElement.scrollTop ||
+            0;
         return y > HEADER_REVEAL_PX;
     };
 
     return useSyncExternalStore(
-        (onStoreChange) => {
-            if (!enabled || typeof window === "undefined") return () => {};
+        (onChange) => {
+            if (!enabled || typeof window === "undefined") {
+                return () => {};
+            }
 
-            let last = get();
+            let last = getSnapshot();
             let ticking = false;
 
-            const handler = () => {
+            const onScroll = () => {
                 if (ticking) return;
                 ticking = true;
-                window.requestAnimationFrame(() => {
+
+                requestAnimationFrame(() => {
                     ticking = false;
-                    const next = get();
+                    const next = getSnapshot();
                     if (next !== last) {
                         last = next;
-                        onStoreChange();
+                        onChange();
                     }
                 });
             };
 
-            window.addEventListener("scroll", handler, { passive: true });
-            return () => window.removeEventListener("scroll", handler);
+            window.addEventListener("scroll", onScroll, {
+                passive: true,
+            });
+
+            return () =>
+                window.removeEventListener("scroll", onScroll);
         },
-        get,
+        getSnapshot,
         () => true
     );
 }
 
+/* ---------------- App ---------------- */
+
 export default function App() {
     const location = useLocation();
     const navigate = useNavigate();
-    const isHome = location.pathname === "/";
     const { t } = useI18n();
 
+    const isHome = location.pathname === "/";
+
     const [menuOpen, setMenuOpen] = useState(false);
-    const [activeSection, setActiveSection] = useState("hero");
+    const [activeSection, setActiveSection] =
+        useState("hero");
 
     const homeHeaderVisible = useHeaderVisible(isHome);
     const headerVisible = !isHome || homeHeaderVisible;
 
-    const openMenu = useCallback(() => setMenuOpen(true), []);
-    const closeMenu = useCallback(() => setMenuOpen(false), []);
+    /* ---------------- Menu ---------------- */
+
+    const openMenu = useCallback(
+        () => setMenuOpen(true),
+        []
+    );
+
+    const closeMenu = useCallback(
+        () => setMenuOpen(false),
+        []
+    );
 
     useEffect(() => {
-        document.body.style.overflow = menuOpen ? "hidden" : "";
+        document.body.style.overflow = menuOpen
+            ? "hidden"
+            : "";
         return () => {
             document.body.style.overflow = "";
         };
     }, [menuOpen]);
+
+    /* ---------------- Scroll to section ---------------- */
 
     const scrollToSection = useCallback(
         (id) => {
@@ -80,44 +120,88 @@ export default function App() {
                 return;
             }
 
-            const el = document.getElementById(target);
+            const el =
+                document.getElementById(target);
             if (!el) return;
-            el.scrollIntoView({ behavior: "smooth", block: "start" });
-            window.history.replaceState(null, "", `/#${target}`);
+
+            el.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            });
+
+            window.history.replaceState(
+                null,
+                "",
+                `/#${target}`
+            );
         },
         [location.pathname, navigate]
     );
 
+    /* ---------------- Hash scroll ---------------- */
+
     useEffect(() => {
         if (!isHome) return;
-        const id = (location.hash || "").replace("#", "");
+
+        const id = (location.hash || "").replace(
+            "#",
+            ""
+        );
         if (!id) return;
-        const el = document.getElementById(id);
+
+        const el =
+            document.getElementById(id);
         if (!el) return;
-        const r = window.requestAnimationFrame(() => el.scrollIntoView({ behavior: "smooth", block: "start" }));
-        return () => window.cancelAnimationFrame(r);
+
+        const r = requestAnimationFrame(() =>
+            el.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+            })
+        );
+
+        return () => cancelAnimationFrame(r);
     }, [isHome, location.hash]);
 
+    /* ---------------- Active section observer ---------------- */
+
     useEffect(() => {
         if (!isHome) return;
 
-        const els = HOME_SECTIONS.map((id) => document.getElementById(id)).filter(Boolean);
+        const els = HOME_SECTIONS.map((id) =>
+            document.getElementById(id)
+        ).filter(Boolean);
+
         if (!els.length) return;
 
         const io = new IntersectionObserver(
             (entries) => {
                 const visible = entries
                     .filter((e) => e.isIntersecting)
-                    .sort((a, b) => (b.intersectionRatio || 0) - (a.intersectionRatio || 0));
+                    .sort(
+                        (a, b) =>
+                            (b.intersectionRatio ||
+                                0) -
+                            (a.intersectionRatio ||
+                                0)
+                    );
 
                 if (!visible.length) return;
-                const id = visible[0].target?.id;
+
+                const id =
+                    visible[0].target?.id;
                 if (id) setActiveSection(id);
             },
             {
-                root: null,
-                threshold: [0.15, 0.25, 0.4, 0.55, 0.7],
-                rootMargin: "-20% 0px -55% 0px",
+                threshold: [
+                    0.15,
+                    0.25,
+                    0.4,
+                    0.55,
+                    0.7,
+                ],
+                rootMargin:
+                    "-20% 0px -55% 0px",
             }
         );
 
@@ -125,66 +209,106 @@ export default function App() {
         return () => io.disconnect();
     }, [isHome, location.key]);
 
+    /* ---------------- Page title ---------------- */
+
     useEffect(() => {
         const map = {
-            "/": () => {
-                const hash = (location.hash || "").replace("#", "");
-                const sec = hash || activeSection || "hero";
-                const labelKey = HOME_SECTIONS.includes(sec) ? `sections.${sec}` : "title.home";
-                return `${t(labelKey)}`;
-            },
-            "/about": () => `${t("title.about")}`,
-            "/contact": () => `${t("title.contact")}`,
+            "/": () => t("brand"),
+            "/products": () =>
+                t("title.products"),
+            "/about": () =>
+                t("title.about"),
+            "/contact": () =>
+                t("title.contact"),
+            "/cart": () => "سبد خرید",
         };
 
         const path = location.pathname || "/";
-        if (path.startsWith("/market/domestic")) {
-            document.title = "محصولات داخلی";
-            return;
-        }
-        if (path.startsWith("/market/export")) {
-            document.title = "محصولات صادراتی";
-            return;
-        }
+
         if (path.startsWith("/product/")) {
             document.title = "جزئیات محصول";
             return;
         }
 
-        const fn = map[path] || (() => `${t("brand")}`);
+        const fn =
+            map[path] ||
+            (() => t("brand"));
         document.title = fn();
-    }, [activeSection, location.hash, location.pathname, t]);
+    }, [
+        activeSection,
+        location.pathname,
+        t,
+    ]);
+
+    /* ---------------- Header nav ---------------- */
 
     const headerNav = useMemo(
         () => [
             { id: "hero", labelKey: "nav.home" },
-            { id: "products", labelKey: "nav.products" },
+            {
+                id: "products",
+                labelKey: "nav.products",
+            },
             { id: "about", labelKey: "nav.about" },
-            { id: "contact", labelKey: "nav.contact" },
+            {
+                id: "contact",
+                labelKey: "nav.contact",
+            },
         ],
         []
     );
 
+    /* ---------------- Render ---------------- */
+
     return (
-        <UIProvider openMenu={openMenu} closeMenu={closeMenu}>
-            <div className={`${styles.shell} ${isHome ? styles.shellHome : styles.shellInner}`.trim()}>
+        <UIProvider
+            openMenu={openMenu}
+            closeMenu={closeMenu}
+        >
+            <div
+                className={`${styles.shell} ${
+                    isHome
+                        ? styles.shellHome
+                        : styles.shellInner
+                }`}
+            >
                 <Header
-                    visible={isHome ? headerVisible : true}
+                    visible={
+                        isHome
+                            ? headerVisible
+                            : true
+                    }
                     isHome={isHome}
-                    activeSection={isHome ? activeSection : null}
+                    activeSection={
+                        isHome ? activeSection : null
+                    }
                     navItems={headerNav}
                     onOpenMenu={openMenu}
-                    onNavigateSection={scrollToSection}
+                    onNavigateSection={
+                        scrollToSection
+                    }
                 />
 
                 <main className={styles.main}>
                     <Routes>
                         {routes.map((r) => (
-                            <Route key={r.path} path={r.path} element={r.element} />
+                            <Route
+                                key={r.path}
+                                path={r.path}
+                                element={r.element}
+                            />
                         ))}
-                        <Route path="*" element={<NotFound />} />
+                        <Route
+                            path="*"
+                            element={<NotFound />}
+                        />
                     </Routes>
                 </main>
+
+                <ToastHost />
+
+                {/* 🔴 دکمه برو بالا + ورود به پرتال */}
+                <BottomActions />
 
                 <Footer />
 
@@ -192,21 +316,26 @@ export default function App() {
                     open={menuOpen}
                     onClose={closeMenu}
                     navItems={headerNav}
-                    onNavigateSection={scrollToSection}
+                    onNavigateSection={
+                        scrollToSection
+                    }
                 />
             </div>
         </UIProvider>
     );
 }
 
+/* ---------------- 404 ---------------- */
+
 function NotFound() {
     return (
         <section className="container section">
-            <h1 className="h1">صفحه پیدا نشد</h1>
-            <p className="muted">این مسیر وجود ندارد.</p>
+            <h1 className="h1">
+                صفحه پیدا نشد
+            </h1>
+            <p className="muted">
+                این مسیر وجود ندارد.
+            </p>
         </section>
     );
 }
-
-
-

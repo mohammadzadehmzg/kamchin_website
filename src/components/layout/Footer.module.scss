@@ -1,156 +1,78 @@
-@use "../../assets/styles/variables.scss" as *;
-
 .footer {
-  background: #fff;
-  border-top: 1px solid $border;
-}
-
-.grid {
-  max-width: $container;
-  margin: 0 auto;
-  padding: 26px 16px;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
-  gap: 18px;
-  align-items: center;
-
-  direction: rtl; // چون محتوای راست‌به‌چپ داری
-}
-
-.left {
-  border-inline-start: 1px solid $border;  // به جای border-left
-  padding-inline-start: 18px;              // به جای padding-left
-  min-height: 220px;
-  display: grid;
-  align-content: space-between;
-}
-
-.mark {
-  width: 160px;
-  height: auto;
-  opacity: 0.95;
-  display: block;
-}
-
-.rights {
-  font-size: 13px;
-  color: $muted;
-
-  span {
-    color: $text;
-    font-weight: 700;
-  }
-}
-
-.center {
-  min-height: 220px;
-  display: grid;
-  align-content: center;
-  justify-items: center;
-  gap: 16px;
-}
-
-.illusWrap {
   width: 100%;
-  display: grid;
-  place-items: center;
-}
-
-.illus {
-  width: min(320px, 100%);
-  height: auto;
-  opacity: 0.95;
-  display: block;
-  object-fit: contain;
-}
-
-.cta {
-  background: $accent;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 700;
-  padding: 10px 16px;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-
-
-  &:hover {
-    filter: brightness(0.95);
-  }
-}
-
-.right {
-  border-inline-end: 1px solid $border;    // به جای border-right
-  padding-inline-end: 18px;                // به جای padding-right
-  min-height: 220px;
-  display: grid;
-  align-content: center;
-  gap: 12px;
-  justify-items: end;
-}
-
-.row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px;
-  align-items: center;
-  width: 100%;
-}
-
-.text {
-  font-size: 13px;
-  line-height: 1.7;
-  color: $text;
-  text-align: right;
-  direction: rtl;
-}
-
-.icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 12px;
-  border: 1px solid $border;
-  display: grid;
-  place-items: center;
-  color: $muted;
-}
-
-.social {
   display: flex;
+  flex-direction: column;
+}
+
+/* بالای فوتر */
+.top {
+  background: #ffc0cb;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #ef4444;
+    font-size: 14px;
+
+    a {
+      color: #ef4444;
+      text-decoration: none;
+    }
+  }
+}
+
+/* پایین فوتر */
+.bottom {
+  background: #ef4444;
+  color: white;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 10px;
-  justify-content: flex-end;
-  padding-top: 6px;
 }
 
-.socialBtn {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  border: 1px solid $border;
-  display: grid;
-  place-items: center;
-  text-decoration: none;
-  color: $muted;
+.socials {
+  display: flex;
+  gap: 14px;
 
-  &:hover {
-    color: $accent;
-    background: $panel2;
+  a {
+    color: white;
+    display: grid;
+    place-items: center;
+    text-decoration: none;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
   }
 }
 
-@media (max-width: 900px) {
-  .grid {
-    grid-template-columns: 1fr;
+.copy {
+  font-size: 12px;
+  text-align: center;
+  opacity: 0.9;
+}
+
+/* 📱 موبایل */
+@media (max-width: 640px) {
+  .top {
+    text-align: center;
+
+    .row {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
   }
 
-  .left,
-  .right {
-    border: 0;
-    padding: 0;
-    min-height: unset;
-  }
-
-  .right {
-    justify-items: start;
+  .socials {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }

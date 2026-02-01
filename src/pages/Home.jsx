@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import styles from "./Home.module.scss";
 
 import { getProducts } from "../services/productsService.js";
-import ProductCard from "../features/products/ProductCard.jsx";
+import NewProductsStrip from "../features/products/NewProductsStrip.jsx";
 
 import AboutStrip from "../components/sections/AboutStrip.jsx";
 import ProductShowcase from "../components/sections/ProductShowcase.jsx";
+import BlogStrip from "../components/sections/BlogStrip.jsx";
 
 import useI18n from "../i18n/useI18n.js";
 
@@ -35,8 +36,12 @@ export default function Home() {
     };
   }, []);
 
-  const featured = useMemo(() => {
-    return products.filter((p) => p?.featured).slice(0, 8);
+  const newProducts = useMemo(() => {
+    // دیتای "جدید" نداریم؛ خروجی پایدار: محصولات featured اولویت دارند
+    const arr = Array.isArray(products) ? products : [];
+    const featured = arr.filter((p) => p?.featured);
+    const rest = arr.filter((p) => !p?.featured);
+    return [...featured, ...rest].slice(0, 12);
   }, [products]);
 
   const openProduct = (p) => {
@@ -64,14 +69,11 @@ export default function Home() {
           </div>
 
           <div className={styles.featuredHeader}>
-            <h2 className="h2">{loading ? "در حال دریافت محصولات..." : "منتخب محصولات"}</h2>
-            <p className="muted">برای دیدن جزئیات هر محصول، روی کارت آن کلیک کنید.</p>
-          </div>
-
-          <div className={styles.grid}>
-            {featured.map((p) => (
-              <ProductCard key={p.id} product={p} onOpen={openProduct} />
-            ))}
+            <NewProductsStrip
+              title={loading ? "در حال دریافت محصولات..." : "فراورده های جدید کامچین"}
+              products={newProducts}
+              onOpen={openProduct}
+            />
           </div>
         </div>
       </section>
@@ -87,6 +89,10 @@ export default function Home() {
             <p className={styles.contactText}>info@kamchin.com</p>
           </div>
         </div>
+      </section>
+
+      <section id="blog" className={styles.section}>
+        <BlogStrip />
       </section>
     </div>
   );
