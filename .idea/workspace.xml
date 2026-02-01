@@ -5,46 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a61da08-fc73-43d2-a697-54328ae97ce3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/sections/BottomActions.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/sections/BottomActions.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/FloatingActions.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/ui/FloatingActions.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/routes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/assets/styles/globals.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/assets/styles/globals.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/Footer.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/Footer.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/Footer.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/Header.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/Header.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/Header.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/MobileMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/MobileMenu.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/layout/MobileMenu.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/MobileMenu.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sections/AboutStrip.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sections/AboutStrip.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sections/ProductShowcase.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sections/ProductShowcase.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/sections/ProductShowcase.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sections/ProductShowcase.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ui/Button.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ui/Button.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/showcase.mock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/showcase.mock.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/define/use-ui.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/define/use-ui.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/categories/CategoryStrip.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/categories/CategoryStrip.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/products/ProductCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/products/ProductCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/products/ProductCard.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/products/ProductCard.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/products/ProductShowcase.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/products/ProductShowcase.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/features/products/productMapper.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/products/productMapper.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/i18n/translations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n/translations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/About.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/About.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Contact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Contact.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Market.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Market.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Market.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Market.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProductDetail.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProductDetail.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/ProductDetail.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/ProductDetail.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Products.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Products.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,6 +134,7 @@
       <workItem from="1769925594723" duration="1238000" />
       <workItem from="1769928174709" duration="1034000" />
       <workItem from="1769931110351" duration="139000" />
+      <workItem from="1769931285872" duration="1599000" />
     </task>
     <servers />
   </component>
