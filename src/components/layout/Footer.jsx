@@ -6,9 +6,12 @@ export default function Footer() {
         <footer className={styles.footer}>
             {/* بخش صورتی */}
             <div className={styles.top}>
-                <div className={styles.row}>
+                <div className={`${styles.row} ${styles.addrRow}`}>
                     <MapPin size={18} />
-                    <span>تهران، شهریار، شاهد شهر، بلوار شهدا، پلاک 33</span>
+                    <div className={styles.addrLines}>
+                        <div>دفتر مرکزی : تهران، فلکه اول صادقیه ، خیابان گلناز شمالی ، نبش خیابان پانزده ،پلاک ، طبقه اول ، واحد 3</div>
+                        <div>کارخانه : تهران ، شهریار، شاهد شهر ،بلوار شهدا ، خیابان شهید صدرزاده ،پلاک 33</div>
+                    </div>
                 </div>
 
                 <div className={styles.row}>

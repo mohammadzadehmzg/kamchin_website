@@ -35,7 +35,7 @@ export default function CategoryStrip({ title = "فراورده های کامچ�
     };
 
     return (
-        <section className={styles.wrap} aria-label="دسته‌بندی محصولات">
+        <section className={styles.wrap} aria-label="دسته‌بندی فراورده‌ها">
             <div className={styles.head}>
                 <h2 className={styles.h2}>{title}</h2>
                 <span className={styles.underline} />

@@ -76,3 +76,15 @@
     justify-content: center;
   }
 }
+
+
+.addrRow {
+  align-items: flex-start;
+}
+
+.addrLines {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  line-height: 1.6;
+}

@@ -5,7 +5,7 @@ export default function Navbar() {
     return (
         <nav className={styles.nav} aria-label="منوی اصلی">
             <Item to="/">خانه</Item>
-            <Item to="/products">محصولات</Item>
+            <Item to="/products">فراورده‌ها</Item>
             <Item to="/about">درباره ما</Item>
             <Item to="/contact">تماس</Item>
         </nav>

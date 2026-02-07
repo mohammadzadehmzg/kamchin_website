@@ -9,7 +9,7 @@ export default function ProductCard({ product, onOpen, onAddToCart }) {
         product?.title ??
         product?.nameFa ??
         product?.name ??
-        "محصول";
+        "فراورده";
 
     const imgRaw = product?.image ?? product?.img ?? product?.cover ?? "";
     const img = resolvePic(imgRaw) || imgRaw;

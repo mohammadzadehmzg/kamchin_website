@@ -25,9 +25,9 @@ export default function ProductDetail() {
   if (!product) {
     return (
       <section className="container section">
-        <h1 className="h1">محصول پیدا نشد</h1>
-        <p className="muted">این محصول در لیست فعلی وجود ندارد.</p>
-        <Link to="/market/domestic" className={styles.back}>بازگشت به محصولات</Link>
+        <h1 className="h1">فراورده پیدا نشد</h1>
+        <p className="muted">این فراورده در لیست فعلی وجود ندارد.</p>
+        <Link to="/products" className={styles.back}>بازگشت به فراورده‌ها</Link>
       </section>
     );
   }
@@ -38,7 +38,7 @@ export default function ProductDetail() {
     <section className={`container section ${styles.wrap}`}>
       <div className={styles.topRow}>
         <div className={styles.breadcrumbs}>
-          <Link to={`/market/${product.market}`}>{product.market === "export" ? "محصولات صادراتی" : "محصولات داخلی"}</Link>
+          <Link to={`/market/${product.market}`}>{product.market === "export" ? "فراورده‌ها صادراتی" : "فراورده‌ها داخلی"}</Link>
           <span>/</span>
           <Link to={`/market/${product.market}/${product.categoryId}`}>{categoryTitle(product.categoryId)}</Link>
         </div>
@@ -59,7 +59,7 @@ export default function ProductDetail() {
           </div>
 
           <div className={styles.desc}>
-            {product.description ? product.description : "توضیحات این محصول به‌زودی تکمیل می‌شود."}
+            {product.description ? product.description : "توضیحات این فراورده به‌زودی تکمیل می‌شود."}
           </div>
 
           <div className={styles.actions}>

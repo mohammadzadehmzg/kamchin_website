@@ -83,17 +83,21 @@ export default function ProductShowcase({ products = [] }) {
             <div className={styles.productFallback} aria-hidden="true" />
           )}
         </div>
+        <div className={styles.actionsRow} aria-label="showcase actions">
+          <button type="button" className={styles.navPrev} onClick={goPrev} aria-label={t("ui.prev")}>
+            <span className={styles.iconArrow} />
+          </button>
 
-        <button type="button" className={styles.navPrev} onClick={goPrev} aria-label={t("ui.prev")}>
-          <span className={styles.iconArrow} />
-        </button>
+          <div className={styles.actionTitle} title={title}>
+            {title}
+          </div>
 
-        <button type="button" className={styles.addCart} onClick={addToCart} aria-label={t("ui.add_to_cart")}>
-          <span className={styles.iconPlus} />
-        </button>
+          <button type="button" className={styles.addCart} onClick={addToCart} aria-label={t("ui.add_to_cart")}>
+            <span className={styles.iconPlus} />
+          </button>
+        </div>
 
         <div className={styles.content}>
-          <h1 className={styles.title}>{title}</h1>
           {!!weight && <div className={styles.weight}>{weight}</div>}
           {!!desc && <p className={styles.desc}>{desc}</p>}
 

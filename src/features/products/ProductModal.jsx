@@ -27,7 +27,7 @@ export default function ProductModal({ open, product, onClose, onMore }) {
         product?.title ??
         product?.nameFa ??
         product?.name ??
-        "محصول";
+        "فراورده";
 
     const img = product?.image ?? product?.img ?? product?.cover ?? "";
     const desc = product?.description ?? product?.desc ?? "";

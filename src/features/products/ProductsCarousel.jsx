@@ -5,7 +5,7 @@ function normalizeProduct(p) {
     if (!p || typeof p !== "object") return null;
 
     const id = p.id ?? p._id ?? p.slug ?? p.code ?? `${Math.random()}`;
-    const title = p.title ?? p.name ?? p.titleFa ?? "محصول";
+    const title = p.title ?? p.name ?? p.titleFa ?? "فراورده";
     const subtitle = p.subtitle ?? p.shortDesc ?? p.description ?? "";
     const image = p.image ?? p.img ?? p.imageUrl ?? p.cover ?? "";
     const categoryId = p.categoryId ?? p.category ?? p.catId ?? null;
@@ -17,7 +17,7 @@ function normalizeProduct(p) {
 }
 
 export default function ProductsCarousel({
-                                             title = "محصولات",
+                                             title = "فراورده‌ها",
                                              products = [],
                                              filterCategoryId = null,
                                          }) {
@@ -87,7 +87,7 @@ export default function ProductsCarousel({
                     className={styles.modalOverlay}
                     role="dialog"
                     aria-modal="true"
-                    aria-label="جزئیات محصول"
+                    aria-label="جزئیات فراورده"
                     onMouseDown={(e) => {
                         if (e.target === e.currentTarget) setActive(null);
                     }}

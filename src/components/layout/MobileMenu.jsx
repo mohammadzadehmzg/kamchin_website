@@ -1,5 +1,5 @@
 import styles from "./MobileMenu.module.scss";
-import { X } from "lucide-react";
+import { Menu } from "lucide-react";
 import useI18n from "../../i18n/useI18n.js";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +27,7 @@ export default function MobileMenu({ open, onClose, navItems = [], onNavigateSec
             <aside className={styles.panel}>
                 <div className={styles.top}>
                     <button className={styles.close} onClick={onClose} aria-label={t("ui.close")}>
-                        <X size={20} />
+                        <Menu size={22} />
                     </button>
                 </div>
 

@@ -89,10 +89,7 @@ export default function App() {
 
     /* ---------------- Menu ---------------- */
 
-    const openMenu = useCallback(
-        () => setMenuOpen(true),
-        []
-    );
+    const openMenu = useCallback(() => setMenuOpen((v) => !v), []);
 
     const closeMenu = useCallback(
         () => setMenuOpen(false),
@@ -226,7 +223,7 @@ export default function App() {
         const path = location.pathname || "/";
 
         if (path.startsWith("/product/")) {
-            document.title = "جزئیات محصول";
+            document.title = "جزئیات فراورده";
             return;
         }
 
@@ -239,6 +236,38 @@ export default function App() {
         location.pathname,
         t,
     ]);
+
+    /* ---------------- Favicon ---------------- */
+
+    useEffect(() => {
+        if (typeof document === "undefined") return;
+
+        const ensureLink = () => {
+            let link = document.querySelector('link[rel="icon"][data-app="kamchin"]');
+            if (!link) {
+                link = document.createElement("link");
+                link.setAttribute("rel", "icon");
+                link.setAttribute("data-app", "kamchin");
+                document.head.appendChild(link);
+            }
+            return link;
+        };
+
+        const path = location.pathname || "/";
+
+        let href = "/favicons/kamchin.png";
+        let type = "image/png";
+
+        if (path === "/cart") {
+            href = "/favicons/cart.svg";
+            type = "image/svg+xml";
+        }
+
+        const link = ensureLink();
+        link.setAttribute("type", type);
+        link.setAttribute("href", href);
+    }, [location.pathname]);
+
 
     /* ---------------- Header nav ---------------- */
 

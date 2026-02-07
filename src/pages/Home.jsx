@@ -37,7 +37,7 @@ export default function Home() {
   }, []);
 
   const newProducts = useMemo(() => {
-    // دیتای "جدید" نداریم؛ خروجی پایدار: محصولات featured اولویت دارند
+    // دیتای "جدید" نداریم؛ خروجی پایدار: فراورده‌ها featured اولویت دارند
     const arr = Array.isArray(products) ? products : [];
     const featured = arr.filter((p) => p?.featured);
     const rest = arr.filter((p) => !p?.featured);
@@ -59,18 +59,18 @@ export default function Home() {
         <div className="container">
           <div className={styles.marketRow}>
             <Link to="/market/domestic" className={styles.marketCard}>
-              <div className={styles.marketTitle}>محصولات داخلی</div>
-              <div className={styles.marketDesc}>مشاهده دسته‌بندی و محصولات بازار داخلی</div>
+              <div className={styles.marketTitle}>فراورده‌ها داخلی</div>
+              <div className={styles.marketDesc}>مشاهده دسته‌بندی و فراورده‌ها بازار داخلی</div>
             </Link>
             <Link to="/market/export" className={styles.marketCard}>
-              <div className={styles.marketTitle}>محصولات صادراتی</div>
-              <div className={styles.marketDesc}>مشاهده دسته‌بندی و محصولات بازار صادرات</div>
+              <div className={styles.marketTitle}>فراورده‌ها صادراتی</div>
+              <div className={styles.marketDesc}>مشاهده دسته‌بندی و فراورده‌ها بازار صادرات</div>
             </Link>
           </div>
 
           <div className={styles.featuredHeader}>
             <NewProductsStrip
-              title={loading ? "در حال دریافت محصولات..." : "فراورده های جدید کامچین"}
+              title={loading ? "در حال دریافت فراورده‌ها..." : "فراورده های جدید کامچین"}
               products={newProducts}
               onOpen={openProduct}
             />

@@ -9,8 +9,8 @@ import { useCart } from "../features/cart/CartContext.jsx";
 import { toast } from "../components/ui/ToastHost.jsx";
 
 const MARKET_TITLES = {
-  domestic: "محصولات داخلی",
-  export: "محصولات صادراتی",
+  domestic: "فراورده‌ها داخلی",
+  export: "فراورده‌ها صادراتی",
 };
 
 const MARKET_CATEGORIES = {
@@ -81,10 +81,10 @@ export default function Market() {
 
         <div className={styles.marketTabs}>
           <Link className={`${styles.marketTab} ${safeMarket === "domestic" ? styles.active : ""}`.trim()} to="/market/domestic">
-            محصولات داخلی
+            فراورده‌ها داخلی
           </Link>
           <Link className={`${styles.marketTab} ${safeMarket === "export" ? styles.active : ""}`.trim()} to="/market/export">
-            محصولات صادراتی
+            فراورده‌ها صادراتی
           </Link>
         </div>
       </div>

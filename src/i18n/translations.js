@@ -8,13 +8,13 @@ export const translations = {
         brand: "کامچین",
         nav: {
             home: "خانه",
-            products: "محصولات",
+            products: "فراورده‌ها",
             about: "درباره ما",
             contact: "تماس",
         },
         sections: {
             hero: "معرفی",
-            products: "محصولات",
+            products: "فراورده‌ها",
             latest_site_posts: "جدیدترین مطالب سایت",
             new_kamchin_products: "فراورده های جدید کامچین",
             about: "درباره ما",
@@ -37,7 +37,7 @@ export const translations = {
         },
         title: {
             home: "خانه",
-            products: "محصولات",
+            products: "فراورده‌ها",
             about: "درباره ما",
             contact: "Contact",
         },
