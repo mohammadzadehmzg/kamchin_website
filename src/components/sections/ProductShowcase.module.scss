@@ -67,9 +67,9 @@
   top: var(--action-top);
   transform: translateY(-50%);
   z-index: 3;
-  display: grid;
-  grid-template-columns: var(--action-size) 1fr var(--action-size);
+  display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 14px;
   padding: 0 var(--action-inset);
   pointer-events: none;
@@ -80,6 +80,8 @@
 }
 
 .actionTitle {
+  display: none;
+  grid-area: title;
   justify-self: center;
   text-align: center;
   font-weight: 900;
@@ -98,6 +100,7 @@
 }
 
 .navPrev {
+  grid-area: prev;
   width: var(--action-size);
   height: var(--action-size);
   border-radius: 999px;
@@ -121,6 +124,7 @@
 
 /* دکمه افزودن به سبد */
 .addCart {
+  grid-area: add;
   width: var(--action-size);
   height: var(--action-size);
   border-radius: 999px;
@@ -171,6 +175,13 @@
   max-width: 560px;
   text-align: center;
   margin-top: 12px;
+}
+
+.titleUnder {
+  margin: 16px 0 10px;
+  font-size: 34px;
+  font-weight: 900;
+  color: rgba(17, 24, 39, 0.95);
 }
 
 .title {
@@ -257,7 +268,7 @@
   .navPrev { top: var(--action-top); }
   .addCart { top: var(--action-top); }
 
-  .title {
+  .titleUnder {
     font-size: 28px;
   }
 
@@ -272,6 +283,36 @@
 }
 
 /* Mobile narrow: نزدیک‌ترین حالت به رفرنس Main-Page */
+
+@media (max-width: 640px) {
+  /* در موبایل، عنوان باید زیر عکس و بین دکمه‌ها باشد (نه روی عکس) */
+  .actionsRow {
+    display: grid;
+    grid-template-columns: var(--action-size) 1fr var(--action-size);
+    grid-template-areas: "add title prev";
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    padding: 0 var(--action-inset);
+    margin-top: 12px;
+  }
+
+  .actionTitle {
+    display: block;
+    padding: 8px 12px;
+    font-size: clamp(16px, 5.0vw, 22px);
+  }
+
+  .titleUnder {
+    display: none;
+  }
+}
+
+
 @media (max-width: 420px) {
   .hero {
     min-height: 690px;
@@ -295,6 +336,6 @@
     max-height: 360px;
   }
 
-  .title { font-size: 26px; }
+  .titleUnder { font-size: 26px; }
   .desc { font-size: 14px; }
 }
