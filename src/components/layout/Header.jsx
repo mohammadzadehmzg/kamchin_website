@@ -5,6 +5,8 @@ import { Search, ShoppingCart, Menu, X, User } from "lucide-react";
 import useI18n from "../../i18n/useI18n.js";
 import { useCart } from "../../features/cart/CartContext.jsx";
 import { getProducts } from "../../services/productsService.js";
+import site from "../../data/site.mock.js";
+import { toast } from "../ui/ToastHost.jsx";
 
 const LOGO_SRC = "/images/cropped-Kamchin-logo-1-1-300x290-1.png";
 
@@ -33,11 +35,133 @@ export default function Header({ visible = true, onOpenMenu }) {
     getProducts()
       .then((list) => {
         if (!alive) return;
-        setSearchAll(Array.isArray(list) ? list : []);
+        const products = (Array.isArray(list) ? list : []).map((p) => {
+          const title = lang === "en" ? (p?.nameEn || p?.nameFa || "") : (p?.nameFa || p?.nameEn || "");
+          const meta = lang === "en" ? (p?.netWeightEn || p?.netWeightFa || "") : (p?.netWeightFa || p?.netWeightEn || "");
+          const hay = `${p?.nameFa || ""} ${p?.nameEn || ""} ${p?.netWeightFa || ""} ${p?.netWeightEn || ""}`.trim();
+          return {
+            type: "product",
+            id: p?.id,
+            title,
+            meta,
+            hay,
+            hayNorm: normFa(hay),
+          };
+        });
+
+        const info = [
+          ...((site?.phones || []).map((ph) => ({
+            type: "phone",
+            id: `phone:${ph}`,
+            title: String(ph),
+            meta: t("ui.phone_label"),
+            hay: `${ph} ${t("ui.phone_label")} ${t("ui.phone_label")}`,
+            hayNorm: normFa(`${ph} ${t("ui.phone_label")} ${t("ui.phone_label")}`),
+          }))),
+          ...((site?.emails || []).map((em) => ({
+            type: "email",
+            id: `email:${em}`,
+            title: String(em),
+            meta: t("ui.email_label"),
+            hay: `${em} ${t("ui.email_label")}`,
+            hayNorm: normFa(`${em} ${t("ui.email_label")}`),
+          }))),
+          {
+            type: "address",
+            id: "addr:office",
+            title: t("ui.office_label"),
+            meta: (lang === "en" ? site?.officeAddressEn : site?.officeAddressFa) || "",
+            hay: `${site?.officeAddressFa || ""} دفتر مرکزی آدرس`,
+          },
+          {
+            type: "address",
+            id: "addr:factory",
+            title: t("ui.factory_label"),
+            meta: (lang === "en" ? site?.factoryAddressEn : site?.factoryAddressFa) || "",
+            hay: `${site?.factoryAddressFa || ""} کارخانه آدرس`,
+          },
+          {
+            type: "route",
+            id: "route:products",
+            title: "فراورده‌ها",
+            meta: "لیست فراورده‌ها",
+            hay: "فراورده فراورده ها محصولات لیست",
+          },
+          {
+            type: "route",
+            id: "route:cart",
+            title: "سبد خرید",
+            meta: "ثبت خرید",
+            hay: "سبد خرید ثبت سفارش واتساپ",
+          },
+          {
+            type: "route",
+            id: "route:contact",
+            title: "تماس با ما",
+            meta: "اطلاعات تماس و آدرس",
+            hay: "تماس با ما ارتباط شماره تلفن آدرس ایمیل",
+          },
+        ];
+
+        setSearchAll([...products, ...info]);
       })
       .catch(() => {
         if (!alive) return;
-        setSearchAll([]);
+        // حتی اگر محصولات لود نشدن، سرچ تماس/آدرس باید کار کند
+        const fallback = [
+          ...((site?.phones || []).map((ph) => ({
+            type: "phone",
+            id: `phone:${ph}`,
+            title: String(ph),
+            meta: t("ui.phone_label"),
+            hay: `${ph} ${t("ui.phone_label")} ${t("ui.phone_label")}`,
+            hayNorm: normFa(`${ph} ${t("ui.phone_label")} ${t("ui.phone_label")}`),
+          }))),
+          ...((site?.emails || []).map((em) => ({
+            type: "email",
+            id: `email:${em}`,
+            title: String(em),
+            meta: t("ui.email_label"),
+            hay: `${em} ${t("ui.email_label")}`,
+            hayNorm: normFa(`${em} ${t("ui.email_label")}`),
+          }))),
+          {
+            type: "address",
+            id: "addr:office",
+            title: t("ui.office_label"),
+            meta: (lang === "en" ? site?.officeAddressEn : site?.officeAddressFa) || "",
+            hay: `${site?.officeAddressFa || ""} دفتر مرکزی آدرس`,
+          },
+          {
+            type: "address",
+            id: "addr:factory",
+            title: t("ui.factory_label"),
+            meta: (lang === "en" ? site?.factoryAddressEn : site?.factoryAddressFa) || "",
+            hay: `${site?.factoryAddressFa || ""} کارخانه آدرس`,
+          },
+          {
+            type: "route",
+            id: "route:products",
+            title: "فراورده‌ها",
+            meta: "لیست فراورده‌ها",
+            hay: "فراورده فراورده ها محصولات لیست",
+          },
+          {
+            type: "route",
+            id: "route:cart",
+            title: "سبد خرید",
+            meta: "ثبت خرید",
+            hay: "سبد خرید ثبت سفارش واتساپ",
+          },
+          {
+            type: "route",
+            id: "route:contact",
+            title: "تماس با ما",
+            meta: "اطلاعات تماس و آدرس",
+            hay: "تماس با ما ارتباط شماره تلفن آدرس ایمیل",
+          },
+        ];
+        setSearchAll(fallback);
       });
 
     return () => {
@@ -47,11 +171,11 @@ export default function Header({ visible = true, onOpenMenu }) {
 
   const searchResults = useMemo(() => {
     const q = normFa(searchQ);
-    if (q.length < 2) return [];
+    // برای شماره/ایمیل، یک کاراکتر هم مفید است
+    if (q.length < 2 && !/\d/.test(q) && !q.includes("@")) return [];
     const out = [];
-    for (const p of searchAll) {
-      const hay = `${p?.nameFa || ""} ${p?.nameEn || ""} ${p?.netWeightFa || ""} ${p?.netWeightEn || ""}`;
-      if (normFa(hay).includes(q)) out.push(p);
+    for (const it of searchAll) {
+      if (normFa(it?.hay || it?.title || "").includes(q)) out.push(it);
       if (out.length >= 8) break;
     }
     return out;
@@ -62,10 +186,46 @@ export default function Header({ visible = true, onOpenMenu }) {
     setSearchQ("");
   };
 
-  const openHit = (p) => {
-    if (!p?.id) return;
+  const copyToClipboard = async (txt) => {
+    try {
+      await navigator.clipboard.writeText(String(txt));
+      toast("کپی شد", "success");
+    } catch {
+      toast("امکان کپی وجود ندارد", "error");
+    }
+  };
+
+  const openHit = (it) => {
+    if (!it) return;
     closeSearch();
-    navigate(`/product/${p.id}`);
+
+    if (it.type === "product" && it.id) {
+      navigate(`/product/${it.id}`);
+      return;
+    }
+
+    if (it.type === "route") {
+      if (it.id === "route:products") navigate("/products");
+      if (it.id === "route:cart") navigate("/cart");
+      if (it.id === "route:contact") navigate("/contact");
+      return;
+    }
+
+    if (it.type === "phone") {
+      copyToClipboard(it.title);
+      return;
+    }
+
+    if (it.type === "email") {
+      copyToClipboard(it.title);
+      return;
+    }
+
+    if (it.type === "address") {
+      // آدرس طولانی است؛ بهترین UX: کپی + رفتن به تماس با ما
+      copyToClipboard(it.meta);
+      navigate("/contact");
+    }
   };
 
   const toggleLang = () => setLang(lang === "fa" ? "en" : "fa");
@@ -130,10 +290,10 @@ export default function Header({ visible = true, onOpenMenu }) {
 
             {searchResults.length ? (
               <div className={styles.searchResults}>
-                {searchResults.map((p) => (
-                  <button key={p.id} type="button" className={styles.searchItem} onClick={() => openHit(p)}>
-                    <span className={styles.searchItemTitle}>{p.nameFa || p.nameEn}</span>
-                    {p.netWeightFa ? <span className={styles.searchItemMeta}>{p.netWeightFa}</span> : null}
+                {searchResults.map((it) => (
+                  <button key={it.id} type="button" className={styles.searchItem} onClick={() => openHit(it)}>
+                    <span className={styles.searchItemTitle}>{it.title}</span>
+                    {it.meta ? <span className={styles.searchItemMeta}>{it.meta}</span> : null}
                   </button>
                 ))}
               </div>

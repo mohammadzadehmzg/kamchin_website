@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import useI18n from "../i18n/useI18n.js";
 import { useEffect, useMemo, useState } from "react";
 import styles from "./Products.module.scss";
 
@@ -15,6 +16,7 @@ function pickRandom(list, n) {
 }
 
 export default function Products() {
+  const { t } = useI18n();
   const navigate = useNavigate();
   const [all, setAll] = useState([]);
 
@@ -34,30 +36,30 @@ export default function Products() {
 
   return (
     <section className="container section">
-      <h1 className="h1">فراورده‌ها</h1>
-      <p className="muted">از بین فراورده‌های داخلی و صادراتی انتخاب کنید.</p>
+      <h1 className="h1">{t("title.products")}</h1>
+      <p className="muted">{t("pages.products.desc")}</p>
 
       <div className={styles.grid}>
         <Link className={styles.card} to="/market/domestic">
-          <div className={styles.title}>فراورده‌ها داخلی</div>
-          <div className={styles.desc}>مشاهده دسته‌بندی‌ها و لیست فراورده‌ها داخلی</div>
+          <div className={styles.title}>{t("ui.domestic_products")}</div>
+          <div className={styles.desc}>{t("pages.products.domestic_desc")}</div>
         </Link>
 
         <Link className={styles.card} to="/market/export">
-          <div className={styles.title}>فراورده‌ها صادراتی</div>
-          <div className={styles.desc}>مشاهده دسته‌بندی‌ها و لیست فراورده‌ها صادراتی</div>
+          <div className={styles.title}>{t("ui.export_products")}</div>
+          <div className={styles.desc}>{t("pages.products.export_desc")}</div>
         </Link>
       </div>
 
       <div className={styles.featuredWrap}>
         <div className={styles.featuredHeader}>
-          <h2 className={styles.featuredTitle}>چند فراورده پیشنهادی</h2>
-          <div className={styles.featuredHint}>روی هر کارت بزنید تا لیست همان بخش را ببینید.</div>
+          <h2 className={styles.featuredTitle}>{t("ui.suggested_products")}</h2>
+          <div className={styles.featuredHint}>{t("ui.suggested_hint")}</div>
         </div>
 
         <div className={styles.block}>
           <div className={styles.blockTop}>
-            <div className={styles.blockTitle}>داخلی</div>
+            <div className={styles.blockTitle}>{t("pages.products.domestic_block")}</div>
             <button type="button" className={styles.blockAction} onClick={() => navigate("/market/domestic")}>مشاهده همه</button>
           </div>
           <div className={styles.picksGrid}>
@@ -83,7 +85,7 @@ export default function Products() {
 
         <div className={styles.block}>
           <div className={styles.blockTop}>
-            <div className={styles.blockTitle}>صادراتی</div>
+            <div className={styles.blockTitle}>{t("pages.products.export_block")}</div>
             <button type="button" className={styles.blockAction} onClick={() => navigate("/market/export")}>مشاهده همه</button>
           </div>
           <div className={styles.picksGrid}>

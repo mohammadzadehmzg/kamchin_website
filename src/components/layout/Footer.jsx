@@ -1,16 +1,18 @@
 import styles from "./Footer.module.scss";
 import { MapPin, Mail, Phone, Instagram, MessageCircle } from "lucide-react";
+import useI18n from "../../i18n/useI18n.js";
 
 export default function Footer() {
+    const { t } = useI18n();
+
     return (
         <footer className={styles.footer}>
-            {/* بخش صورتی */}
             <div className={styles.top}>
                 <div className={`${styles.row} ${styles.addrRow}`}>
                     <MapPin size={18} />
                     <div className={styles.addrLines}>
-                        <div>دفتر مرکزی : تهران، فلکه اول صادقیه ، خیابان گلناز شمالی ، نبش خیابان پانزده ،پلاک ، طبقه اول ، واحد 3</div>
-                        <div>کارخانه : تهران ، شهریار، شاهد شهر ،بلوار شهدا ، خیابان شهید صدرزاده ،پلاک 33</div>
+                        <div>{t("footer.office_address")}</div>
+                        <div>{t("footer.factory_address")}</div>
                     </div>
                 </div>
 
@@ -25,30 +27,39 @@ export default function Footer() {
                 </div>
             </div>
 
-
             <div className={styles.bottom}>
                 <div className={styles.socials}>
-                    {/* Instagram (handle not provided) */}
-                    <a href="https://www.instagram.com/kamchin.foods/" aria-label="Instagram">
+                    <a
+                        href="https://www.instagram.com/kamchin.foods/"
+                        aria-label="Instagram"
+                        target="_blank"
+                        rel="noreferrer"
+                    >
                         <Instagram size={18} />
                     </a>
 
-                    {/* WhatsApp */}
-                    <a href="https://wa.me/989919725830" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+                    <a
+                        href="https://wa.me/989919725830"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="WhatsApp"
+                    >
                         <MessageCircle size={18} />
                     </a>
 
-                    {/* Telegram */}
-                    <a href="https://t.me/+989919725830" target="_blank" rel="noreferrer" aria-label="Telegram">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white">
-                            <path d="M12 0C5.372 0 0 5.372 0 12c0 6.627 5.372 12 12 12s12-5.373 12-12C24 5.372 18.627 0 12 0zm5.25 8.625l-1.875 8.625c-.143.625-.518.775-1.05.488l-2.906-2.144-1.4 1.35c-.155.155-.287.287-.587.287l.21-2.975 5.412-4.875c.238-.21-.05-.33-.37-.12l-6.675 4.2-2.868-.9c-.625-.195-.637-.625.13-.925l11.212-4.35c.518-.195.975.125.8.9z"/>
+                    <a
+                        href="https://t.me/+989919725830"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="Telegram"
+                    >
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="white" aria-hidden="true">
+                            <path d="M12 0C5.372 0 0 5.372 0 12c0 6.627 5.372 12 12 12s12-5.373 12-12C24 5.372 18.628 0 12 0zm5.895 8.221-1.971 9.285c-.148.66-.54.82-1.092.51l-3.021-2.23-1.458 1.402c-.161.161-.297.297-.608.297l.217-3.076 5.6-5.061c.243-.217-.054-.34-.378-.123L8.833 13.2l-2.948-.923c-.64-.203-.653-.64.135-.949l11.52-4.44c.533-.197.999.128.825 1.333z" />
                         </svg>
                     </a>
                 </div>
 
-                <div className={styles.copy}>
-                    made by golvash company
-                </div>
+                <div className={styles.copy}>{t("footer.made_by")}</div>
             </div>
         </footer>
     );

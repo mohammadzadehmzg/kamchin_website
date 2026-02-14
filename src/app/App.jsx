@@ -1,31 +1,29 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Products from "./pages/Products";
-import Domestic from "./pages/Domestic";
-import Export from "./pages/Export";
-import ProductDetail from "./pages/ProductDetail";
-import Cart from "./pages/Cart";
-import NotFound from "./pages/NotFound";
+import { Routes, Route } from "react-router-dom";
+import AppShell from "./AppShell.jsx";
 
-function App() {
-    return (
-        <BrowserRouter>
-            <Routes>
+import Home from "../pages/Home.jsx";
+import Products from "../pages/Products.jsx";
+import Market from "../pages/Market.jsx";
+import ProductDetail from "../pages/ProductDetail.jsx";
+import CartPage from "../pages/CartPage.jsx";
+import About from "../pages/About.jsx";
+import Contact from "../pages/Contact.jsx";
+import NotFound from "../pages/NotFound.jsx";
 
-                <Route path="/" element={<Home />} />
-
-                <Route path="/products" element={<Products />} />
-                <Route path="/market/domestic" element={<Domestic />} />
-                <Route path="/market/export" element={<Export />} />
-
-                <Route path="/product/:id" element={<ProductDetail />} />
-                <Route path="/cart" element={<Cart />} />
-
-                <Route path="*" element={<NotFound />} />
-
-            </Routes>
-        </BrowserRouter>
-    );
+export default function App() {
+  return (
+    <Routes>
+      <Route element={<AppShell />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/market/:market" element={<Market />} />
+        <Route path="/market/:market/:category" element={<Market />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+  );
 }
-
-export default App;

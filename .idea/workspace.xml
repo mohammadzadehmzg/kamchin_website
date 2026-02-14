@@ -5,7 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4a61da08-fc73-43d2-a697-54328ae97ce3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/chunk-6MBIOSIA.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/chunk-6MBIOSIA.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/chunk-QS2HEVKA.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/chunk-QS2HEVKA.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/lucide-react.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/lucide-react.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/lucide-react.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/lucide-react.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/react-dom.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/react-dom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/react-dom.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/react-dom.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/react-dom_client.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/react-dom_client.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/react-dom_client.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/react-dom_client.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/react-router-dom.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/react-router-dom.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/react-router-dom.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/react-router-dom.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/react.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/react.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/react.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/react.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/react_jsx-dev-runtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/react_jsx-dev-runtime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/react_jsx-dev-runtime.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/react_jsx-dev-runtime.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/react_jsx-runtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/react_jsx-runtime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node_modules/.vite/deps/react_jsx-runtime.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.vite/deps/react_jsx-runtime.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/Footer.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/Footer.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/Header.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/Header.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/layout/MobileMenu.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/layout/MobileMenu.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sections/AboutStrip.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sections/AboutStrip.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/sections/BlogStrip.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/sections/BlogStrip.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/site.mock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/site.mock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/features/categories/categories.mock.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/features/categories/categories.mock.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/i18n/translations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/i18n/translations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/About.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/About.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Contact.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Contact.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Market.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Market.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Products.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Products.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +64,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;AmirsMoradi&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/mohammadzadehmzg/kamchin_website.git&quot;,
+    &quot;accountId&quot;: &quot;258c0f41-8f93-496a-ac19-d9201bd289b3&quot;
+  }
+}</component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
@@ -47,7 +94,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -143,11 +190,30 @@
       <workItem from="1770530416092" duration="4946000" />
       <workItem from="1770615951047" duration="437000" />
       <workItem from="1770616435614" duration="28203000" />
-      <workItem from="1770811728038" duration="1370000" />
+      <workItem from="1770811728038" duration="4239000" />
+      <workItem from="1771046718976" duration="436000" />
+      <workItem from="1771047180142" duration="3244000" />
+      <workItem from="1771056856826" duration="2965000" />
+      <workItem from="1771070661971" duration="105000" />
+      <workItem from="1771070795709" duration="228000" />
+      <workItem from="1771071040604" duration="175000" />
+      <workItem from="1771071242082" duration="619000" />
+      <workItem from="1771071881869" duration="1553000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

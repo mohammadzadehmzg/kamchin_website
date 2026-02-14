@@ -59,18 +59,18 @@ export default function Home() {
         <div className="container">
           <div className={styles.marketRow}>
             <Link to="/market/domestic" className={styles.marketCard}>
-              <div className={styles.marketTitle}>فراورده‌ها داخلی</div>
-              <div className={styles.marketDesc}>مشاهده دسته‌بندی و فراورده‌ها بازار داخلی</div>
+              <div className={styles.marketTitle}>{t("ui.domestic_products")}</div>
+              <div className={styles.marketDesc}>{t("ui.view_domestic")}</div>
             </Link>
             <Link to="/market/export" className={styles.marketCard}>
-              <div className={styles.marketTitle}>فراورده‌ها صادراتی</div>
-              <div className={styles.marketDesc}>مشاهده دسته‌بندی و فراورده‌ها بازار صادرات</div>
+              <div className={styles.marketTitle}>{t("ui.export_products")}</div>
+              <div className={styles.marketDesc}>{t("ui.view_export")}</div>
             </Link>
           </div>
 
           <div className={styles.featuredHeader}>
             <NewProductsStrip
-              title={loading ? "در حال دریافت فراورده‌ها..." : "فراورده های جدید کامچین"}
+              title={loading ? t("ui.loading_products") : t("sections.new_kamchin_products")}
               products={newProducts}
               onOpen={openProduct}
             />

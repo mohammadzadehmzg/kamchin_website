@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import useI18n from "../i18n/useI18n.js";
 import { Link, useParams } from "react-router-dom";
 import styles from "./Market.module.scss";
 
@@ -9,8 +10,8 @@ import { useCart } from "../features/cart/CartContext.jsx";
 import { toast } from "../components/ui/ToastHost.jsx";
 
 const MARKET_TITLES = {
-  domestic: "فراورده‌ها داخلی",
-  export: "فراورده‌ها صادراتی",
+  domestic: "ui.domestic_products",
+  export: "ui.export_products",
 };
 
 const MARKET_CATEGORIES = {
@@ -18,8 +19,10 @@ const MARKET_CATEGORIES = {
   export: ["fried", "stew-veg", "food"],
 };
 
-function categoryTitle(id) {
-  return categories.find((c) => c.id === id)?.titleFa ?? id;
+function categoryTitle(id, lang) {
+  const c = categories.find((x) => x.id === id);
+  if (!c) return id;
+  return lang === "en" ? (c.titleEn ?? c.titleFa ?? id) : (c.titleFa ?? c.titleEn ?? id);
 }
 
 function CategoryIcon({ id }) {
@@ -46,6 +49,7 @@ function CategoryIcon({ id }) {
 }
 
 export default function Market() {
+  const { t, lang } = useI18n();
   const { market = "domestic", category } = useParams();
   const safeMarket = market === "export" ? "export" : "domestic";
   const cart = useCart();
@@ -77,19 +81,19 @@ export default function Market() {
   return (
     <section className={`container section ${styles.wrap}`}>
       <div className={styles.header}>
-        <h1 className="h1">{MARKET_TITLES[safeMarket]}</h1>
+        <h1 className="h1">{t(MARKET_TITLES[safeMarket])}</h1>
 
         <div className={styles.marketTabs}>
           <Link className={`${styles.marketTab} ${safeMarket === "domestic" ? styles.active : ""}`.trim()} to="/market/domestic">
-            فراورده‌ها داخلی
+            {t("ui.domestic_products")}
           </Link>
           <Link className={`${styles.marketTab} ${safeMarket === "export" ? styles.active : ""}`.trim()} to="/market/export">
-            فراورده‌ها صادراتی
+            {t("ui.export_products")}
           </Link>
         </div>
       </div>
 
-      <div className={styles.catCards} aria-label="Categories">
+      <div className={styles.catCards} aria-label={t("ui.categories")}>
         {catList.map((id) => (
           <Link
             key={id}
@@ -98,7 +102,7 @@ export default function Market() {
             aria-current={id === activeCategory ? "page" : undefined}
           >
             <div className={styles.catIcon} aria-hidden="true"><CategoryIcon id={id} /></div>
-            <div className={styles.catLabel}>{categoryTitle(id)}</div>
+            <div className={styles.catLabel}>{categoryTitle(id, lang)}</div>
           </Link>
         ))}
       </div>
