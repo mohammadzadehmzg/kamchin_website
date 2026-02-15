@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import styles from "./Header.module.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Search, ShoppingCart, Menu, X, User } from "lucide-react";
 import useI18n from "../../i18n/useI18n.js";
 import { useCart } from "../../features/cart/CartContext.jsx";
@@ -251,10 +251,10 @@ export default function Header({ visible = true, onOpenMenu }) {
               <Search size={20} />
             </button>
 
-            <a className={styles.iconLink} href="/cart" aria-label="Cart">
+            <Link className={styles.iconLink} to="/cart" aria-label="Cart">
               <ShoppingCart size={20} />
               {cart.count > 0 && <span className={styles.badge}>{cart.count}</span>}
-            </a>
+            </Link>
 
             <button className={styles.burgerBtn} type="button" onClick={onOpenMenu} aria-label="Menu">
               <Menu size={24} />

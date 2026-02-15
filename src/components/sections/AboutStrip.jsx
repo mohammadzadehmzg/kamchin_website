@@ -1,5 +1,6 @@
 import styles from "./AboutStrip.module.scss";
 import Button from "../ui/Button.jsx";
+import { Link } from "react-router-dom";
 import useI18n from "../../i18n/useI18n.js";
 
 // local asset (bundled under /pic)
@@ -21,7 +22,7 @@ export default function AboutStrip() {
                         </p>
 
                         <div className={styles.actions}>
-                            <Button as="a" href="/about">
+                            <Button as={Link} to="/about">
                                 {t("ui.read_more")}
                             </Button>
                         </div>
