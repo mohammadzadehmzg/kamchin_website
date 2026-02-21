@@ -4,6 +4,7 @@ import Header from "../components/layout/Header.jsx";
 import Footer from "../components/layout/Footer.jsx";
 import MobileMenu from "../components/layout/MobileMenu.jsx";
 import BottomActions from "../components/sections/BottomActions.jsx";
+import ToastHost from "../components/ui/ToastHost.jsx";
 import styles from "./AppShell.module.scss";
 
 export default function AppShell() {
@@ -37,6 +38,7 @@ export default function AppShell() {
         <Outlet />
       </main>
       <BottomActions />
+      <ToastHost />
       <Footer />
     </div>
   );

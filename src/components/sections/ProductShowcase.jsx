@@ -4,7 +4,7 @@ import showcaseData from "../../data/showcase.mock.js";
 import useI18n from "../../i18n/useI18n.js";
 import { resolvePic } from "../../utils/asset.js";
 import { useCart } from "../../features/cart/CartContext.jsx";
-import { toast } from "../ui/ToastHost.jsx";
+import { Link } from "react-router-dom";
 
 function slidesFromProducts(products) {
   const list = Array.isArray(products) ? products : [];
@@ -68,7 +68,6 @@ export default function ProductShowcase({ products = [] }) {
   const addToCart = () => {
     if (!active?.id) return;
     cart.add(active.id);
-    toast(t("ui.added_to_cart"), "success");
   };
 
   const imgSrc = active.image || active.productImage || active.leftImage || "";
@@ -102,9 +101,9 @@ export default function ProductShowcase({ products = [] }) {
           {!!weight && <div className={styles.weight}>{weight}</div>}
           {!!desc && <p className={styles.desc}>{desc}</p>}
 
-          <a href={active.href ?? "#"} className={styles.cta}>
+          <Link to={active.href ?? "#"} className={styles.cta}>
             {cta}
-          </a>
+          </Link>
 
           <div className={styles.dots}>
             {slides.map((_, i) => (

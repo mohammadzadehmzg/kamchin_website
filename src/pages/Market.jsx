@@ -7,7 +7,6 @@ import { getProducts } from "../services/productsService.js";
 import ProductCard from "../features/products/ProductCard.jsx";
 import categories from "../features/categories/categories.mock.js";
 import { useCart } from "../features/cart/CartContext.jsx";
-import { toast } from "../components/ui/ToastHost.jsx";
 
 const MARKET_TITLES = {
   domestic: "ui.domestic_products",
@@ -75,7 +74,6 @@ export default function Market() {
   const addToCart = (p) => {
     if (!p?.id) return;
     cart.add(p.id);
-    toast("به سبد خرید اضافه شد", "success");
   };
 
   return (

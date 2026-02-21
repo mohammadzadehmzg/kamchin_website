@@ -83,6 +83,7 @@ export const translations = {
                 desc: "از بین فراورده‌های داخلی و صادراتی انتخاب کنید.",
                 domestic_desc: "مشاهده دسته‌بندی‌ها و لیست فراورده‌ها داخلی",
                 export_desc: "مشاهده دسته‌بندی‌ها و لیست فراورده‌ها صادراتی",
+                ctaCook: "آشپزی با این فراورده",
                 domestic_block: "داخلی",
                 export_block: "صادراتی",
             },
@@ -109,6 +110,56 @@ export const translations = {
             about: "درباره ما",
             contact: "تماس",
         },
+
+        products: {
+            ctaCook: "آشپزی با این فراورده",
+            price: {
+                currency_fa: "تومان",
+                currency_en: "Toman",
+            },
+            detail: {
+                loading: "در حال بارگذاری فراورده...",
+                not_found: "فراورده پیدا نشد",
+                not_found_desc: "این فراورده در لیست فعلی وجود ندارد.",
+                load_error: "خطا در دریافت اطلاعات فراورده.",
+            },
+        },
+
+auth: {
+    login: {
+        title: "ورود",
+    },
+    signup: {
+        title: "ثبت نام",
+    },
+    fields: {
+        phone: "شماره موبایل",
+        otp: "کد تایید",
+        name: "نام",
+        address: "آدرس",
+    },
+    placeholders: {
+        phone: "مثلاً 09123456789",
+        otp: "کد ۶ رقمی",
+        name: "نام و نام خانوادگی",
+        address: "آدرس کامل",
+    },
+    actions: {
+        request_code: "ارسال کد",
+        verify_login: "ورود",
+        verify_signup: "ثبت نام",
+        change_phone: "تغییر شماره",
+    },
+    hints: {
+        code_sent: "کد ارسال شد.",
+        test_code: "کد تست",
+    },
+    toast: {
+        login_success: "ورود با موفقیت انجام شد.",
+        signup_success: "ثبت نام با موفقیت انجام شد.",
+    },
+},
+
     },
     en: {
         brand: "Kamchin",
@@ -214,5 +265,55 @@ export const translations = {
             about: "About us",
             contact: "Contact",
         },
+
+        products: {
+            ctaCook: "Cook with this product",
+            price: {
+                currency_fa: "Toman",
+                currency_en: "Toman",
+            },
+            detail: {
+                loading: "Loading product...",
+                not_found: "Product not found",
+                not_found_desc: "This product is not available in the current list.",
+                load_error: "Failed to load product details.",
+            },
+        },
+
+auth: {
+    login: {
+        title: "Login",
+    },
+    signup: {
+        title: "Sign up",
+    },
+    fields: {
+        phone: "Mobile number",
+        otp: "Verification code",
+        name: "Name",
+        address: "Address",
+    },
+    placeholders: {
+        phone: "e.g. +98 912 345 6789",
+        otp: "6-digit code",
+        name: "Full name",
+        address: "Full address",
+    },
+    actions: {
+        request_code: "Send code",
+        verify_login: "Login",
+        verify_signup: "Sign up",
+        change_phone: "Change number",
+    },
+    hints: {
+        code_sent: "Code sent.",
+        test_code: "Test code",
+    },
+    toast: {
+        login_success: "Logged in successfully.",
+        signup_success: "Signed up successfully.",
+    },
+},
+
     },
 };

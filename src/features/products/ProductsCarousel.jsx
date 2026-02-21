@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import styles from "./ProductsCarousel.module.scss";
+import useI18n from "../../i18n/useI18n.js";
 
 function normalizeProduct(p) {
     if (!p || typeof p !== "object") return null;
@@ -62,7 +63,7 @@ export default function ProductsCarousel({
                                 <div className={styles.imgFallback}>بدون تصویر</div>
                             )}
                             <div className={styles.hoverCurtain} />
-                            <div className={styles.hoverCta}>مشاهده جزئیات</div>
+                            <div className={styles.hoverCta}>{t("products.ctaCook")}</div>
                         </div>
 
                         <div className={styles.meta}>

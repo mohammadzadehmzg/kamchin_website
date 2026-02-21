@@ -1,7 +1,10 @@
 import styles from "./ProductCard.module.scss";
 import { resolvePic } from "../../utils/asset.js";
+import useI18n from "../../i18n/useI18n.js";
+import { formatPrice } from "../../utils/money.js";
 
 export default function ProductCard({ product, onOpen, onAddToCart }) {
+    const { lang } = useI18n();
     if (!product) return null;
 
     const title =

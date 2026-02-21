@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useCart } from "../features/cart/CartContext.jsx";
-import { toast } from "../components/ui/ToastHost.jsx";
 import styles from "./ProductDetail.module.scss";
 
-import { getProducts } from "../services/productsService.js";
+import { getProductById } from "../services/productsService.js";
+import useI18n from "../i18n/useI18n.js";
+import { formatPrice } from "../utils/money.js";
 import categories from "../features/categories/categories.mock.js";
 
 function categoryTitle(id) {
@@ -13,34 +14,69 @@ function categoryTitle(id) {
 
 export default function ProductDetail() {
   const cart = useCart();
+  const { lang, t } = useI18n();
   const { id } = useParams();
-  const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    getProducts().then((list) => setProducts(Array.isArray(list) ? list : []));
-  }, []);
+    let alive = true;
+    setLoading(true);
+    setError(null);
+    getProductById(id)
+      .then((p) => {
+        if (!alive) return;
+        setProduct(p);
+      })
+      .catch((e) => {
+        if (!alive) return;
+        setError(e);
+        setProduct(null);
+      })
+      .finally(() => {
+        if (!alive) return;
+        setLoading(false);
+      });
+    return () => {
+      alive = false;
+    };
+  }, [id]);
 
-  const product = useMemo(() => products.find((p) => p?.id === id) ?? null, [products, id]);
+  if (loading) {
+    return (
+      <section className="container section">
+        <h1 className="h1">{t("products.detail.loading")}</h1>
+      </section>
+    );
+  }
 
   if (!product) {
     return (
       <section className="container section">
-        <h1 className="h1">فراورده پیدا نشد</h1>
-        <p className="muted">این فراورده در لیست فعلی وجود ندارد.</p>
+        <h1 className="h1">{t("products.detail.not_found")}</h1>
+        <p className="muted">{error ? t("products.detail.load_error") : t("products.detail.not_found_desc")}</p>
         <Link to="/products" className={styles.back}>بازگشت به فراورده‌ها</Link>
       </section>
     );
   }
 
-  const marketLabel = product.market === "export" ? "صادراتی" : "داخلی";
+  const name = lang === "en" ? product.nameEn : product.nameFa;
+  const marketLabel = product.market === "export" ? (lang === "en" ? "Export" : "صادراتی") : (lang === "en" ? "Domestic" : "داخلی");
+  const priceLabel = formatPrice(product.finalPrice ?? product.price, lang);
+  const currency = lang === "en" ? t("products.price.currency_en") : t("products.price.currency_fa");
 
   return (
     <section className={`container section ${styles.wrap}`}>
       <div className={styles.topRow}>
         <div className={styles.breadcrumbs}>
-          <Link to={`/market/${product.market}`}>{product.market === "export" ? "فراورده‌ها صادراتی" : "فراورده‌ها داخلی"}</Link>
-          <span>/</span>
-          <Link to={`/market/${product.market}/${product.categoryId}`}>{categoryTitle(product.categoryId)}</Link>
+          <Link to="/products">{t("nav.products")}</Link>
+          {product.categoryId ? (
+            <>
+              <span>/</span>
+              <span>{categoryTitle(product.categoryId)}</span>
+            </>
+          ) : null}
         </div>
       </div>
 
@@ -50,12 +86,17 @@ export default function ProductDetail() {
         </div>
 
         <div className={styles.body}>
-          <h1 className={styles.title}>{product.nameFa}</h1>
+          <h1 className={styles.title}>{name}</h1>
 
           <div className={styles.meta}>
             <span>بازار: {marketLabel}</span>
             {product.netWeightFa ? <span>وزن خالص: {product.netWeightFa}</span> : null}
             {product.categoryId ? <span>دسته: {categoryTitle(product.categoryId)}</span> : null}
+            {product.raw?.code ? <span>کد: {String(product.raw.code)}</span> : null}
+          </div>
+
+          <div className={styles.priceRow}>
+            <span className={styles.price}>{priceLabel} {currency}</span>
           </div>
 
           <div className={styles.desc}>
@@ -63,8 +104,8 @@ export default function ProductDetail() {
           </div>
 
           <div className={styles.actions}>
-            <Link to={`/market/${product.market}/${product.categoryId}`} className={styles.back}>بازگشت به لیست</Link>
-            <button type="button" className={styles.add} onClick={() => { cart.add(product.id); toast(`«${product.name}» به سبد خرید اضافه شد`, "success"); }}>
+            <Link to="/products" className={styles.back}>بازگشت به لیست</Link>
+            <button type="button" className={styles.add} onClick={() => cart.add(product.id)}>
               افزودن به سبد خرید
             </button>
           </div>

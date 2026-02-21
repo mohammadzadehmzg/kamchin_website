@@ -54,6 +54,20 @@
   font-weight: var(--fw-semibold);
 }
 
+.priceRow {
+  margin-top: 2px;
+}
+
+.price {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--font-ui);
+  font-weight: var(--fw-extrabold);
+  font-size: 22px;
+  color: rgba(0,0,0,0.88);
+}
+
 .desc {
   font-family: var(--font-ui);
   color: rgba(0,0,0,0.78);

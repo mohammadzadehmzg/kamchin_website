@@ -6,7 +6,8 @@ const showcase = [
     titleFa: "کرفس سرخ شده",
     weightFa: "480 گرم",
     descFa: "آماده مصرف، مناسب خورش و غذاهای ایرانی. کیفیت ثابت و طعم خانگی.",
-    ctaFa: "مشاهده",
+    ctaFa: "آشپزی با این فراورده",
+    ctaEn: "Cook with this product",
     href: "#",
     leftImage:
       "/pic/U06a9U0631U0641U0633-U0633U0631U062e-U0634U062fU0647-480-U062fU0627U062eU0644U06cc.webp",
@@ -19,7 +20,8 @@ const showcase = [
     titleFa: "سبزی سرخ شده",
     weightFa: "480 گرم",
     descFa: "گزینه‌ی سریع برای قورمه‌سبزی و غذاهای خانگی. آماده، تمیز و اقتصادی.",
-    ctaFa: "مشاهده",
+    ctaFa: "آشپزی با این فراورده",
+    ctaEn: "Cook with this product",
     href: "#",
     leftImage:
       "/pic/U0633U0628U0632U06cc-U0642U0648U0631U0645U0647-U0633U0631U062e-U0634U062fU0647-480-U062fU0627U062eU0644U06cc.webp",

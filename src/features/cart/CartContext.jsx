@@ -1,7 +1,9 @@
 import { createContext, useContext, useEffect, useMemo, useReducer, useState } from "react";
 import { getProducts } from "../../services/productsService.js";
+import { toast } from "../../components/ui/ToastHost.jsx";
 
 const STORAGE_KEY = "kamchin_cart_v1";
+const LANG_KEY = "kamchin.lang";
 
 function safeLoad() {
   try {
@@ -93,14 +95,33 @@ export function CartProvider({ children }) {
 
   const api = useMemo(
     () => ({
-      add: (id) => dispatch({ type: "ADD", id }),
+      add: (id) => {
+        dispatch({ type: "ADD", id });
+
+        const pid = String(id);
+        const p = productsMap.get(pid) || null;
+
+        const lang = (() => {
+          try {
+            const v = window.localStorage.getItem(LANG_KEY);
+            return v === "en" ? "en" : "fa";
+          } catch {
+            return "fa";
+          }
+        })();
+
+        const nameFa = p?.nameFa || p?.titleFa || p?.name || p?.title || pid;
+        const nameEn = p?.nameEn || p?.titleEn || p?.name_en || nameFa;
+        const msg = lang === "en" ? `"${nameEn}" added to cart` : `«${nameFa}» به سبد خرید اضافه شد`;
+        toast(msg, "success");
+      },
       removeOne: (id) => dispatch({ type: "REMOVE_ONE", id }),
       setQty: (id, qty) => dispatch({ type: "SET_QTY", id, qty }),
       clear: () => dispatch({ type: "CLEAR" }),
       count,
       lines,
     }),
-    [count, lines]
+    [count, lines, productsMap]
   );
 
   return <CartContext.Provider value={api}>{children}</CartContext.Provider>;

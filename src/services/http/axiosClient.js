@@ -9,7 +9,7 @@ const baseURL =
     import.meta.env.VITE_GOLVASH_API_BASE_URL ||
     import.meta.env.VITE_API_BASE_URL ||
     import.meta.env.VITE_API_BASE ||
-    "";
+    "https://golvash.org";
 
 export const axiosClient = axios.create({
     baseURL,
